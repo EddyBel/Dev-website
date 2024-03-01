@@ -127,7 +127,7 @@ export function Blog() {
                 title={post.name}
                 description={post.description}
                 zoomed={true}
-                path={`/home/blog/posts/${post.id}-${post.name}`}
+                path={`/home/blog/snippets/${post.id}-${post.name}`}
                 key={post.id}
               />
             ))}
@@ -142,7 +142,7 @@ export function Blog() {
                 title={post.name}
                 description={post.description}
                 zoomed={true}
-                path={`/home/blog/posts/${post.id}-${post.name}`}
+                path={`/home/blog/notes/${post.id}-${post.name}`}
                 key={post.id}
               />
             ))}

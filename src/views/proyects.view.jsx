@@ -70,12 +70,12 @@ export function Proyects() {
   }
 
   const onChangePagination = (page) => setPage(page);
-
   const onChangeInputSearch = (e) => setSearh(e.target.value);
+  const validateNewRepos = () => !validateArrays(newRepos) | !newRepos;
 
   return (
     <main className="w-full max-w-[1000px] m-auto flex flex-col gap-5 p-5">
-      <ValidatorVariable variable={validateArrays(newRepos)} elseComponent={<BannerLoader />}>
+      <ValidatorVariable variable={validateArrays(repos)} elseComponent={<BannerLoader />}>
         <BannerShadow background={CoverWorks}>
           <h1 className="text-5xl capitalize font-extrabold text-neutral-100 flex items-center gap-3">
             Explora mis respositorios
@@ -146,7 +146,7 @@ export function Proyects() {
             selectionMode="single"
             aria-label="Example static collection table"
             classNames={{
-              table: validateArrays(newRepos) | !validateValues(newRepos) ? 'min-h-[400px]' : 'min-h-auto',
+              table: validateNewRepos() ? 'min-h-[400px]' : 'min-h-auto',
             }}
           >
             <TableHeader>
@@ -156,11 +156,7 @@ export function Proyects() {
                 </TableColumn>
               ))}
             </TableHeader>
-            <TableBody
-              items={10}
-              isLoading={validateArrays(newRepos) | !validateValues(newRepos)}
-              loadingContent={<Spinner />}
-            >
+            <TableBody items={10} isLoading={validateNewRepos()} loadingContent={<Spinner />}>
               {NewRepos.repos[page - 1]?.map((repo) => (
                 <TableRow key={repo?.id} href={repo?.url} as={Link}>
                   <TableCell>

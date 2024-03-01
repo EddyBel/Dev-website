@@ -3,7 +3,7 @@ import { Button, Pagination, Image } from '@nextui-org/react';
 import { useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 import { CardArticle } from '../components/@cards/card-article';
-import { Validator, ValidatorVariable } from '../components/@common/validators';
+import { Validator } from '../components/@common/validators';
 import { SadDinosoure } from '../assets';
 import { useDividePosts, usePostsByRoute, useSearchPost } from '../hook/post';
 import { validateArrays } from '../utils/validations';
@@ -40,26 +40,24 @@ export function BlogArticlesType() {
 
       <section className="w-full py-9">
         {/* <h1 className="text-4xl capitalize mb-12 font-bold">Articulos</h1> */}
-        <ValidatorVariable variable={newPosts.posts} elseComponent={<MessageNotNotesFound />}>
-          <Validator validation={validateArrays(newPosts)} elseComponent={<MessageNotNotesFound />}>
-            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-              {newPosts.posts[page - 1]?.map((post) => (
-                <div className="m-auto" key={Math.random()}>
-                  <CardArticle
-                    // height={200}
-                    width={'100%'}
-                    url={post?.cover}
-                    title={post?.name}
-                    description={post?.description}
-                    lang={post?.lang}
-                    zoomed={true}
-                    path={`/home/blog/${type}/${post?.id}-${post?.name}`}
-                  />
-                </div>
-              ))}
-            </div>
-          </Validator>
-        </ValidatorVariable>
+        <Validator validation={validateArrays(newPosts?.posts)} elseComponent={<MessageNotNotesFound />}>
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+            {newPosts.posts[page - 1]?.map((post) => (
+              <div className="m-auto" key={Math.random()}>
+                <CardArticle
+                  // height={200}
+                  width={'100%'}
+                  url={post?.cover}
+                  title={post?.name}
+                  description={post?.description}
+                  lang={post?.lang}
+                  zoomed={true}
+                  path={`/home/blog/${type}/${post?.id}-${post?.name}`}
+                />
+              </div>
+            ))}
+          </div>
+        </Validator>
       </section>
 
       <section className="w-full flex justify-center items-center">
