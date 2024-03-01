@@ -2,6 +2,7 @@ import { createContext, useEffect, useState } from 'react';
 import { getBlogPageContent, getBlogSnippets, getBlogNotes, getBlogPosts } from '../api/api';
 import { randomItem } from '../utils/random';
 import { CoversGlobal, CoversSnippets } from '../assets';
+import { validateObjectsNotNull, validateValues } from '../utils/validations';
 
 /** Contexto que guarda los posts del blog */
 export const BlogContext = createContext();
@@ -15,6 +16,7 @@ export function BlogProvider({ children }) {
     'https://images.pexels.com/photos/4218883/pexels-photo-4218883.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
     'https://images.pexels.com/photos/15467761/pexels-photo-15467761/free-photo-of-person-scanning-qr-code-from-screen.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
   ]);
+  const localRef = 'blog';
 
   const defaultDescriptionNotes =
     'Exploro ideas innovadoras y perspectivas educativas que enriquecerán tu experiencia académica.';
@@ -36,52 +38,13 @@ export function BlogProvider({ children }) {
     });
   };
 
-  const getPostsInCacheOrPost = async () => {
-    const cacheString = localStorage.getItem('blog');
-    // Valida si el localStorage tiene algun valor
-    if (cacheString) {
-      const cache = JSON.parse(cacheString);
-      const cacheDate = cache.date;
-      const cacheContent = cache.data;
-      const date = new Date().getTime();
-      const diference = (date - cacheDate) / (1000 * 60 * 60 * 24 * 7);
+  const getAPI = async () => {
+    // Realiza las peticiones para obtener los posts
+    const responseSnippetsPosts = await getBlogSnippets();
+    const responseNotePosts = await getBlogNotes();
+    const responsePostsPosts = await getBlogPosts();
 
-      //   Valida si ya paso mas de una semana
-      if (diference > 1) {
-        // Realiza las peticiones para obtener los posts
-        const responseSnippetsPosts = await getBlogSnippets();
-        const responseNotePosts = await getBlogNotes();
-        const responsePostsPosts = await getBlogPosts();
-
-        // Agrega propiedades estanda a todas las notas encontradas en la petición
-        const PostsSnippets = standardize(responseSnippetsPosts.data, CoversSnippets, defaultDescriptionSnippets);
-        const PostsNotes = standardize(responseNotePosts.data, CoversGlobal, defaultDescriptionNotes);
-        const PostsBlog = standardize(responsePostsPosts.data, CoversSnippets, defaultDescriptionPosts);
-
-        //   Crea el objeto que contendra las notas
-        const blog = {
-          PostsSnippets,
-          PostsNotes,
-          PostsBlog,
-        };
-
-        //   Guarda en el local storage y en el estado
-        localStorage.setItem(
-          'blog',
-          JSON.stringify({
-            data: blog,
-            date: new Date().getTime(),
-          }),
-        );
-        setBlog(blog);
-      }
-      setBlog(cacheContent);
-    } else {
-      // Realiza las peticiones para obtener los posts
-      const responseSnippetsPosts = await getBlogSnippets();
-      const responseNotePosts = await getBlogNotes();
-      const responsePostsPosts = await getBlogPosts();
-
+    if ((responseNotePosts, responsePostsPosts, responseSnippetsPosts)) {
       // Agrega propiedades estanda a todas las notas encontradas en la petición
       const PostsSnippets = standardize(responseSnippetsPosts.data, CoversSnippets, defaultDescriptionSnippets);
       const PostsNotes = standardize(responseNotePosts.data, CoversGlobal, defaultDescriptionNotes);
@@ -96,7 +59,7 @@ export function BlogProvider({ children }) {
 
       //   Guarda en el local storage y en el estado
       localStorage.setItem(
-        'blog',
+        localRef,
         JSON.stringify({
           data: blog,
           date: new Date().getTime(),
@@ -104,6 +67,24 @@ export function BlogProvider({ children }) {
       );
       setBlog(blog);
     }
+  };
+
+  const getPostsInCacheOrPost = async () => {
+    const cacheString = localStorage.getItem(localRef);
+    // Valida si el localStorage tiene algun valor
+    if (cacheString) {
+      const cache = JSON.parse(cacheString);
+      const cacheDate = cache.date;
+      const cacheContent = cache.data;
+      const date = new Date().getTime();
+      const diference = (date - cacheDate) / (1000 * 60 * 60 * 24 * 7);
+
+      //   Valida si ya paso mas de una semana
+      if (diference > 1) getAPI();
+      else if (!validateValues(cacheContent)) getAPI();
+      else if (!validateObjectsNotNull(cacheContent)) getAPI();
+      else setBlog(cacheContent);
+    } else getAPI();
   };
 
   /** Ejecución inicial nada mas iniciar la web */

@@ -33,7 +33,7 @@ import { Link } from 'react-router-dom';
 export function CardProyect({ url, title, description, path, onClick, height, width, blurred, zoomed }) {
   return (
     <Link to={path} onClick={onClick}>
-      <div className="w-full max-w-[300px]">
+      <div className="w-full max-w-[300px] dark:hover:bg-neutral-950/80 p-2 rounded-lg duration-300 transition-background">
         <div className="w-full m-auto flex justify-center items-center">
           <Image
             isZoomed={zoomed}

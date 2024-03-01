@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState } from 'react';
 import { getAboutMe, getExperience, getProyects } from '../api/api';
+import { validateObjectsNotNull, validateValues } from '../utils/validations';
 
 export const StoreContext = createContext();
 
@@ -17,61 +18,19 @@ export function StoreProvider({ children }) {
     linkedin: 'https://www.linkedin.com/in/eduardo-rangel-eddybel/',
     status: true,
   };
+  const localRef = 'info';
 
-  //   useEffect(() => {
-  //     console.log(information);
-  //   }, [information]);
+  /** Realiza las peticiones a la API */
+  async function getApi() {
+    // Realiza todas las peticiones
+    const responseAboutMe = await getAboutMe();
+    const responseExperience = await getExperience();
+    const responseProyects = await getProyects();
 
-  /**
-   * Esta función solicita la información en caso de que no tenga un estado previamente guardado.
-   * - Si no existe un storage guardado previamente entonces realiza la petición al servidor.
-   * - Si existe un storage guardado previamente entonces valdida que haya pasado mas de una semana para renovar ls datos
-   * - Actualiza el estado local de la apliacion para que la aplicacion pueda acceder a los datos
-   */
-  const getDataInCaheOrAPI = async () => {
-    const cache = localStorage.getItem('info');
-    if (cache) {
-      const cacheData = JSON.parse(cache);
-      const cacheDate = cacheData.date;
-      const cacheContent = cacheData.data;
-      const date = new Date().getTime();
-      const diference = (date - cacheDate) / (1000 * 60 * 60 * 24 * 7);
-
-      if (diference > 1) {
-        // Realiza todas las peticiones
-        const responseAboutMe = await getAboutMe();
-        const responseExperience = await getExperience();
-        const responseProyects = await getProyects();
-
-        // Filtra algunos datos
-        const aboutMe = responseAboutMe?.data?.map((item) => {
-          if (item.name === 'Sobre mi') return item?.information?.split('\n');
-        });
-        const experience = responseExperience?.data;
-        const proyects = responseProyects?.data;
-
-        // Crea el objeto de la información
-        const information = {
-          aboutMe,
-          experience,
-          proyects,
-        };
-
-        //   Crea el local storage
-        localStorage.setItem('info', JSON.stringify({ data: information, date: new Date().getTime() }));
-        setInformation(information);
-      }
-      setInformation(cacheContent);
-    } else {
-      // Realiza todas las peticiones
-      const responseAboutMe = await getAboutMe();
-      const responseExperience = await getExperience();
-      const responseProyects = await getProyects();
-
+    if (validateValues(responseAboutMe, responseExperience, responseProyects)) {
       // Filtra algunos datos
-      let aboutMe = '';
-      responseAboutMe?.data?.map((item) => {
-        if (item?.name?.toLowerCase() === 'sobre mi') aboutMe = item?.information?.split('\n');
+      const aboutMe = responseAboutMe?.data?.map((item) => {
+        if (item.name === 'Sobre mi') return item?.information?.split('\n');
       });
       const experience = responseExperience?.data;
       const proyects = responseProyects?.data;
@@ -84,9 +43,31 @@ export function StoreProvider({ children }) {
       };
 
       //   Crea el local storage
-      localStorage.setItem('info', JSON.stringify({ data: information, date: new Date().getTime() }));
+      localStorage.setItem(localRef, JSON.stringify({ data: information, date: new Date().getTime() }));
       setInformation(information);
     }
+  }
+
+  /**
+   * Esta función solicita la información en caso de que no tenga un estado previamente guardado.
+   * - Si no existe un storage guardado previamente entonces realiza la petición al servidor.
+   * - Si existe un storage guardado previamente entonces valdida que haya pasado mas de una semana para renovar ls datos
+   * - Actualiza el estado local de la apliacion para que la aplicacion pueda acceder a los datos
+   */
+  const getDataInCaheOrAPI = async () => {
+    const cache = localStorage.getItem(localRef);
+    if (cache) {
+      const cacheData = JSON.parse(cache);
+      const cacheDate = cacheData.date;
+      const cacheContent = cacheData.data;
+      const date = new Date().getTime();
+      const diference = (date - cacheDate) / (1000 * 60 * 60 * 24 * 7);
+
+      if (diference > 1) getApi();
+      else if (!validateValues(cacheContent)) getApi();
+      else if (!validateObjectsNotNull(cacheContent)) getApi();
+      else setInformation(cacheContent);
+    } else getApi();
   };
 
   /** Ejecución inicial al arrancar la web */
