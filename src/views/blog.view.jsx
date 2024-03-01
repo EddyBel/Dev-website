@@ -8,13 +8,14 @@ import { ValidatorVariable } from '../components/@common/validators';
 import { BannerLoader } from '../components/@loaders/banner.loader';
 import { CardLoader } from '../components/@loaders/card.loader';
 import { PostsLoader } from '../components/@loaders/blog-posts.loader';
+import { validateArrays } from '../utils/validations';
 
 export function Blog() {
   const { notes, posts, snippets } = useGetLastNotes(4);
 
   return (
     <main className="w-full max-w-[1000px] m-auto flex flex-col gap-5 p-5">
-      <ValidatorVariable variable={notes} elseComponent={<BannerLoader />}>
+      <ValidatorVariable variable={validateArrays(notes, posts, snippets)} elseComponent={<BannerLoader />}>
         <BannerShadow background={CoverBlog}>
           <h1 className="text-5xl capitalize font-extrabold text-neutral-100 flex items-center gap-3">
             Explora los articulos
@@ -23,7 +24,7 @@ export function Blog() {
       </ValidatorVariable>
 
       <ValidatorVariable
-        variable={notes}
+        variable={validateArrays(notes, posts, snippets)}
         elseComponent={
           <section className="flex flex-wrap justify-center items-center gap-1 w-full">
             <CardLoader />
@@ -100,7 +101,7 @@ export function Blog() {
 
       <div className="w-full my-16"></div>
 
-      <ValidatorVariable variable={notes} elseComponent={<PostsLoader />}>
+      <ValidatorVariable variable={validateArrays(notes, posts, snippets)} elseComponent={<PostsLoader />}>
         <section className="w-full py-5">
           <Divider className="my-4" />
 

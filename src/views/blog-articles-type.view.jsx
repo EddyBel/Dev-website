@@ -6,6 +6,7 @@ import { CardArticle } from '../components/@cards/card-article';
 import { Validator, ValidatorVariable } from '../components/@common/validators';
 import { SadDinosoure } from '../assets';
 import { useDividePosts, usePostsByRoute, useSearchPost } from '../hook/post';
+import { validateArrays } from '../utils/validations';
 
 export function BlogArticlesType() {
   const { pathname } = useLocation();
@@ -40,7 +41,7 @@ export function BlogArticlesType() {
       <section className="w-full py-9">
         {/* <h1 className="text-4xl capitalize mb-12 font-bold">Articulos</h1> */}
         <ValidatorVariable variable={newPosts.posts} elseComponent={<MessageNotNotesFound />}>
-          <Validator validation={newPosts.size > 0} elseComponent={<MessageNotNotesFound />}>
+          <Validator validation={validateArrays(newPosts)} elseComponent={<MessageNotNotesFound />}>
             <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
               {newPosts.posts[page - 1]?.map((post) => (
                 <div className="m-auto" key={Math.random()}>

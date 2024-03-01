@@ -38,34 +38,41 @@ export function BlogProvider({ children }) {
     });
   };
 
+  /** Realiza las peticiones a la web */
   const getAPI = async () => {
     // Realiza las peticiones para obtener los posts
     const responseSnippetsPosts = await getBlogSnippets();
     const responseNotePosts = await getBlogNotes();
     const responsePostsPosts = await getBlogPosts();
 
-    if ((responseNotePosts, responsePostsPosts, responseSnippetsPosts)) {
-      // Agrega propiedades estanda a todas las notas encontradas en la petición
-      const PostsSnippets = standardize(responseSnippetsPosts.data, CoversSnippets, defaultDescriptionSnippets);
-      const PostsNotes = standardize(responseNotePosts.data, CoversGlobal, defaultDescriptionNotes);
-      const PostsBlog = standardize(responsePostsPosts.data, CoversSnippets, defaultDescriptionPosts);
+    if (validateValues(responseNotePosts, responsePostsPosts, responseSnippetsPosts)) {
+      const SnippetsContent = responseSnippetsPosts?.data;
+      const NotesContent = responseNotePosts?.data;
+      const PostsContent = responsePostsPosts?.data;
 
-      //   Crea el objeto que contendra las notas
-      const blog = {
-        PostsSnippets,
-        PostsNotes,
-        PostsBlog,
-      };
+      if (validateValues(SnippetsContent, NotesContent, PostsContent)) {
+        // Agrega propiedades estanda a todas las notas encontradas en la petición
+        const PostsSnippets = standardize(SnippetsContent, CoversSnippets, defaultDescriptionSnippets);
+        const PostsNotes = standardize(NotesContent, CoversGlobal, defaultDescriptionNotes);
+        const PostsBlog = standardize(PostsContent, CoversSnippets, defaultDescriptionPosts);
 
-      //   Guarda en el local storage y en el estado
-      localStorage.setItem(
-        localRef,
-        JSON.stringify({
-          data: blog,
-          date: new Date().getTime(),
-        }),
-      );
-      setBlog(blog);
+        //   Crea el objeto que contendra las notas
+        const blog = {
+          PostsSnippets,
+          PostsNotes,
+          PostsBlog,
+        };
+
+        //   Guarda en el local storage y en el estado
+        localStorage.setItem(
+          localRef,
+          JSON.stringify({
+            data: blog,
+            date: new Date().getTime(),
+          }),
+        );
+        setBlog(blog);
+      }
     }
   };
 

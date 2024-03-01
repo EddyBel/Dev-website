@@ -28,6 +28,7 @@ import { FaGithub } from 'react-icons/fa6';
 import { useStore } from '../hook/store.context';
 import { truncate } from '../utils/formatter';
 import { randomItem } from '../utils/random';
+import { validateArrays, validateValues } from '../utils/validations';
 
 const defaultLanguaje = 'Ninguno';
 
@@ -74,7 +75,7 @@ export function Proyects() {
 
   return (
     <main className="w-full max-w-[1000px] m-auto flex flex-col gap-5 p-5">
-      <ValidatorVariable variable={true} elseComponent={<BannerLoader />}>
+      <ValidatorVariable variable={validateArrays(newRepos)} elseComponent={<BannerLoader />}>
         <BannerShadow background={CoverWorks}>
           <h1 className="text-5xl capitalize font-extrabold text-neutral-100 flex items-center gap-3">
             Explora mis respositorios
@@ -116,28 +117,26 @@ export function Proyects() {
               }
             />
 
-            <ValidatorVariable variable={Language} elseComponent={<></>}>
-              <Dropdown>
-                <DropdownTrigger>
-                  <Button color="secondary" variant="solid" className="capitalize rounded-2xl min-h-[55px]">
-                    {selectedValue}
-                  </Button>
-                </DropdownTrigger>
-                <DropdownMenu
-                  aria-label="Single selection example"
-                  variant="flat"
-                  color="secondary"
-                  disallowEmptySelection
-                  selectionMode="single"
-                  selectedKeys={selectedKeys}
-                  onSelectionChange={setSelectedKeys}
-                >
-                  {Language?.map((lang) => (
-                    <DropdownItem key={lang ?? defaultLanguaje}>{lang ?? defaultLanguaje}</DropdownItem>
-                  ))}
-                </DropdownMenu>
-              </Dropdown>
-            </ValidatorVariable>
+            <Dropdown>
+              <DropdownTrigger>
+                <Button color="secondary" variant="solid" className="capitalize rounded-2xl min-h-[55px]">
+                  {selectedValue}
+                </Button>
+              </DropdownTrigger>
+              <DropdownMenu
+                aria-label="Single selection example"
+                variant="flat"
+                color="secondary"
+                disallowEmptySelection
+                selectionMode="single"
+                selectedKeys={selectedKeys}
+                onSelectionChange={setSelectedKeys}
+              >
+                {Language?.map((lang) => (
+                  <DropdownItem key={lang ?? defaultLanguaje}>{lang ?? defaultLanguaje}</DropdownItem>
+                ))}
+              </DropdownMenu>
+            </Dropdown>
           </div>
 
           <p className="text-neutral-200/50">Total {repos?.length ?? 0} Repositorios</p>
@@ -147,7 +146,7 @@ export function Proyects() {
             selectionMode="single"
             aria-label="Example static collection table"
             classNames={{
-              table: (newRepos?.length === 0) | !newRepos ? 'min-h-[400px]' : 'min-h-auto',
+              table: validateArrays(newRepos) | !validateValues(newRepos) ? 'min-h-[400px]' : 'min-h-auto',
             }}
           >
             <TableHeader>
@@ -157,7 +156,11 @@ export function Proyects() {
                 </TableColumn>
               ))}
             </TableHeader>
-            <TableBody items={10} isLoading={(newRepos?.length === 0) | !newRepos} loadingContent={<Spinner />}>
+            <TableBody
+              items={10}
+              isLoading={validateArrays(newRepos) | !validateValues(newRepos)}
+              loadingContent={<Spinner />}
+            >
               {NewRepos.repos[page - 1]?.map((repo) => (
                 <TableRow key={repo?.id} href={repo?.url} as={Link}>
                   <TableCell>

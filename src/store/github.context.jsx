@@ -8,21 +8,23 @@ export function GithubProvider({ children }) {
   const [repos, setRepos] = useState();
   const localRef = 'git';
 
+  /** Realiza las peticiones de la web */
   const getAPI = async () => {
-    // Realiza las peticiones a la API y obten el contenido
     const response = await getAllRepositories();
+
     if (validateValues(response)) {
       const content = response.data;
 
-      // Guarda en el estado actual y en localStorage
-      localStorage.setItem(
-        localRef,
-        JSON.stringify({
-          data: content,
-          date: new Date().getTime(),
-        }),
-      );
-      setRepos(content);
+      if (validateValues(content)) {
+        localStorage.setItem(
+          localRef,
+          JSON.stringify({
+            data: content,
+            date: new Date().getTime(),
+          }),
+        );
+        setRepos(content);
+      }
     }
   };
 

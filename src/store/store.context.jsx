@@ -28,23 +28,29 @@ export function StoreProvider({ children }) {
     const responseProyects = await getProyects();
 
     if (validateValues(responseAboutMe, responseExperience, responseProyects)) {
-      // Filtra algunos datos
-      const aboutMe = responseAboutMe?.data?.map((item) => {
-        if (item.name === 'Sobre mi') return item?.information?.split('\n');
-      });
-      const experience = responseExperience?.data;
-      const proyects = responseProyects?.data;
+      // Extrae el contenido de las peticiones
+      const aboutMeContent = responseAboutMe?.data;
+      const experienceContent = responseExperience?.data;
+      const proyectsContent = responseProyects?.data;
 
-      // Crea el objeto de la información
-      const information = {
-        aboutMe,
-        experience,
-        proyects,
-      };
+      if (validateValues(aboutMeContent, experienceContent, proyectsContent)) {
+        // Filtra algunos datos
+        let aboutMe = [];
+        aboutMeContent?.map((item) => {
+          if (item.name === 'Sobre mi') aboutMe = item?.information?.split('\n');
+        });
 
-      //   Crea el local storage
-      localStorage.setItem(localRef, JSON.stringify({ data: information, date: new Date().getTime() }));
-      setInformation(information);
+        // Crea el objeto de la información
+        const information = {
+          aboutMe,
+          experience: experienceContent,
+          proyects: proyectsContent,
+        };
+
+        //   Crea el local storage
+        localStorage.setItem(localRef, JSON.stringify({ data: information, date: new Date().getTime() }));
+        setInformation(information);
+      }
     }
   }
 
