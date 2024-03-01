@@ -1,0 +1,35 @@
+{
+  "AboutMe": [],
+  "Experience": [
+    {
+      "title": "Full-Stack Developer",
+      "company": "Independiente",
+      "temporary": "Diciembre 2021 - Actualmente ...",
+      "description": "Responsable de la plataforma, componentes y utilidades para la creación y desarrollo de aplicaciones web. Mejora de un 30% en la entrega de software. Implantación de medidas de integración continua y despliegue con A/B testing en más de 15 equipos."
+    },
+    {
+      "title": "Full-Stack Developer",
+      "company": "LySs",
+      "temporary": "Diciembre 2019 - Diciembre 2021",
+      "description": "Responsable de la plataforma, componentes y utilidades para la creación y desarrollo de aplicaciones web. Mejora de un 30% en la entrega de software. Implantación de medidas de integración continua y despliegue con A/B testing en más de 15 equipos."
+    }
+  ],
+  "SocialNetworks": {
+    "Linkedin": { "name": "Linkedin", "url": "https://www.linkedin.com/in/eduardo-rangel-eddybel/" },
+    "Github": { "name": "GitHub", "url": "https://github.com/EddyBel" }
+  },
+  "Navigation": [
+    {
+      "name": "Inicio",
+      "path": "/home"
+    },
+    {
+      "name": "Blog",
+      "path": "/blog"
+    },
+    {
+      "name": "Trabajos",
+      "path": "/works"
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+.bg-mesh-blue-purple {
+  background-color: #99b1ff;
+  background-image: radial-gradient(at 29% 92%, hsla(145, 90%, 73%, 1) 0px, transparent 50%),
+    radial-gradient(at 85% 25%, hsla(317, 61%, 65%, 1) 0px, transparent 50%),
+    radial-gradient(at 54% 82%, hsla(187, 71%, 60%, 1) 0px, transparent 50%),
+    radial-gradient(at 99% 46%, hsla(223, 66%, 67%, 1) 0px, transparent 50%),
+    radial-gradient(at 77% 57%, hsla(15, 88%, 64%, 1) 0px, transparent 50%),
+    radial-gradient(at 42% 19%, hsla(47, 68%, 75%, 1) 0px, transparent 50%),
+    radial-gradient(at 3% 32%, hsla(242, 96%, 72%, 1) 0px, transparent 50%);
+}
+
+.bg-mesh-pink-green {
+  background-color: #e6ff99;
+  background-image: radial-gradient(at 75% 51%, hsla(336, 90%, 70%, 1) 0px, transparent 50%),
+    radial-gradient(at 63% 4%, hsla(196, 99%, 74%, 1) 0px, transparent 50%),
+    radial-gradient(at 27% 79%, hsla(338, 70%, 63%, 1) 0px, transparent 50%),
+    radial-gradient(at 71% 70%, hsla(256, 92%, 61%, 1) 0px, transparent 50%),
+    radial-gradient(at 37% 8%, hsla(127, 67%, 63%, 1) 0px, transparent 50%),
+    radial-gradient(at 50% 68%, hsla(95, 85%, 72%, 1) 0px, transparent 50%),
+    radial-gradient(at 33% 49%, hsla(156, 85%, 72%, 1) 0px, transparent 50%);
+}
+
+.bg-mesh-blue-yellow {
+  background-color: #ccff99;
+  background-image: radial-gradient(at 82% 59%, hsla(251, 62%, 68%, 1) 0px, transparent 50%),
+    radial-gradient(at 7% 86%, hsla(51, 82%, 76%, 1) 0px, transparent 50%),
+    radial-gradient(at 86% 98%, hsla(167, 68%, 62%, 1) 0px, transparent 50%),
+    radial-gradient(at 54% 19%, hsla(204, 69%, 68%, 1) 0px, transparent 50%),
+    radial-gradient(at 21% 29%, hsla(156, 75%, 68%, 1) 0px, transparent 50%),
+    radial-gradient(at 50% 49%, hsla(54, 67%, 64%, 1) 0px, transparent 50%),
+    radial-gradient(at 97% 42%, hsla(290, 96%, 79%, 1) 0px, transparent 50%);
+}

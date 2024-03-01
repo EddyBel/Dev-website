@@ -1,0 +1,49 @@
+.iphone,
+.ipad {
+  display: block;
+  color: #fff;
+  text-align: center;
+  font-family: 'SF Pro Display', Helvetica Neue, Arial, sans-serif;
+  letter-spacing: -0.022em;
+  font-size: 2.5vmin;
+  text-shadow: 0 0 0.5em #000;
+  background-color: #000;
+  background-size: auto 200%, cover;
+  background-repeat: no-repeat, no-repeat;
+  border: solid #111;
+  margin-bottom: 2em;
+  position: relative;
+  box-shadow: 0 0.5em 2em 0.2em rgba(0, 0, 0, 0.33), 0 0 0 0.5px #000 inset;
+  transition: all 0.1s linear, line-height 0s linear;
+  background-position: 50% 100%, center;
+  transform-origin: bottom center;
+}
+.iphone:hover,
+.ipad:hover {
+  color: transparent;
+  text-shadow: 0 0 0em transparent;
+  background-position: 50% -100%, center center;
+  transition: all 0.15s linear, line-height 5s linear;
+  line-height: 0vmin;
+}
+.iphone {
+  width: 23.7623762376vmin;
+  height: 51.0891089109vmin;
+  line-height: 51.4455445545vmin;
+  border-width: 1.5207920792vmin;
+  border-radius: 4.0550130098vmin;
+  background-image: linear-gradient(rgba(0, 0, 0, 0), #111),
+    url(https://www.apple.com/v/iphone-xs/d/images/overview/screen_display_wallpaper_iphonexs_large.jpg);
+  z-index: 200;
+}
+.ipad {
+  margin-left: 2em;
+  height: 85.8vmin;
+  width: 60vmin;
+  line-height: 85.8vmin;
+  border-width: 3vmin;
+  border-radius: 4.2857142857vmin;
+  background-image: linear-gradient(rgba(0, 0, 0, 0), #111),
+    url(https://www.apple.com/v/ipad-pro/s/images/overview/retina_screen_1__csuokryyjb42_large.jpg);
+  z-index: 100;
+}
