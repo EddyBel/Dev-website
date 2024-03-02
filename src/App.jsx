@@ -6,6 +6,7 @@ import { Routes } from './router/router';
 import { BlogProvider } from './store/blog.context';
 import { GithubProvider } from './store/github.context';
 import { DrawingInConsole } from './utils/drawing';
+import { SwitchTheme } from './components/@inputs/theme-switch';
 
 function App() {
   useEffect(() => DrawingInConsole(), []);
@@ -19,6 +20,7 @@ function App() {
         </GithubProvider>
       </BlogProvider>
       <ButtonUpScroll />
+      <SwitchTheme />
       <Footer />
     </>
   );

@@ -3,19 +3,22 @@ import { Button, Card, CardFooter, Image, Link, Divider } from '@nextui-org/reac
 import { CoverBlog } from '../assets';
 import { CardArticle } from '../components/@cards/card-article';
 import { CoverSnippets, CoverNotes, CoverPosts } from '../assets/index';
-import { useGetLastNotes } from '../hook/post';
 import { ValidatorVariable } from '../components/@common/validators';
 import { BannerLoader } from '../components/@loaders/banner.loader';
 import { CardLoader } from '../components/@loaders/card.loader';
 import { PostsLoader } from '../components/@loaders/blog-posts.loader';
 import { validateArrays } from '../utils/validations';
+import { useBlog } from '../hook/blog.context';
 
 export function Blog() {
-  const { notes, posts, snippets } = useGetLastNotes(4);
+  const { lastPosts } = useBlog();
 
   return (
     <main className="w-full max-w-[1000px] m-auto flex flex-col gap-5 p-5">
-      <ValidatorVariable variable={validateArrays(notes, posts, snippets)} elseComponent={<BannerLoader />}>
+      <ValidatorVariable
+        variable={validateArrays(lastPosts?.notes, lastPosts?.posts, lastPosts?.snippets)}
+        elseComponent={<BannerLoader />}
+      >
         <BannerShadow background={CoverBlog}>
           <h1 className="text-5xl capitalize font-extrabold text-neutral-100 flex items-center gap-3">
             Explora los articulos
@@ -24,7 +27,7 @@ export function Blog() {
       </ValidatorVariable>
 
       <ValidatorVariable
-        variable={validateArrays(notes, posts, snippets)}
+        variable={validateArrays(lastPosts?.notes, lastPosts?.posts, lastPosts?.snippets)}
         elseComponent={
           <section className="flex flex-wrap justify-center items-center gap-1 w-full">
             <CardLoader />
@@ -33,7 +36,7 @@ export function Blog() {
           </section>
         }
       >
-        <section className="py-5 m-auto mb-12">
+        <section className="py-5 m-auto mb-12 animation-card-proyects">
           <div className="max-w-[900px] gap-2 grid grid-cols-12 grid-rows-1 px-8">
             <Card className="col-span-12 sm:col-span-4 h-[300px]">
               <Image
@@ -101,12 +104,15 @@ export function Blog() {
 
       <div className="w-full my-16"></div>
 
-      <ValidatorVariable variable={validateArrays(notes, posts, snippets)} elseComponent={<PostsLoader />}>
+      <ValidatorVariable
+        variable={validateArrays(lastPosts?.notes, lastPosts?.posts, lastPosts?.snippets)}
+        elseComponent={<PostsLoader />}
+      >
         <section className="w-full py-5">
           <Divider className="my-4" />
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 gap-y-12 my-9">
-            {posts.map((post) => (
+            {lastPosts?.posts?.map((post) => (
               <CardArticle
                 url={post.cover}
                 title={post.name}
@@ -121,7 +127,7 @@ export function Blog() {
           <Divider className="my-4" />
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 gap-y-12 my-9">
-            {snippets.map((post) => (
+            {lastPosts?.snippets?.map((post) => (
               <CardArticle
                 url={post.cover}
                 title={post.name}
@@ -136,7 +142,7 @@ export function Blog() {
           <Divider className="my-4" />
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 gap-y-12 my-9">
-            {notes.map((post) => (
+            {lastPosts?.notes?.map((post) => (
               <CardArticle
                 url={post.cover}
                 title={post.name}

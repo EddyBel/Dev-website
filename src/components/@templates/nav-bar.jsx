@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import {
   Navbar,
   NavbarBrand,
@@ -13,7 +13,7 @@ import {
 } from '@nextui-org/react';
 import { AvatarCard } from '../@common/avatar-cards';
 import { useStore } from '../../hook/store.context';
-import { Navigation } from '../../web.config.json';
+// import { Navigation } from '../../web.config.json';
 import { DropdownNavbar } from '../@buttons/dropdown-navbar';
 import { FiBook } from 'react-icons/fi';
 import { FiBookOpen } from 'react-icons/fi';
@@ -24,19 +24,11 @@ import { FaNetworkWired } from 'react-icons/fa6';
 import { IoDocumentText } from 'react-icons/io5';
 
 export function NavBar() {
-  //   const { pathname } = useLocation();
   const { user } = useStore();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  //   const [routes, setRoutes] = useState();
-
-  //   useEffect(() => {
-  //     const navigations = [];
-  //     Object.entries(Navigation).forEach(([key, value]) => (!value.name ? key : navigations.push(value)));
-  //     setRoutes(navigations);
-  //   }, []);
 
   return (
-    <Navbar onMenuOpenChange={setIsMenuOpen}>
+    <Navbar onMenuOpenChange={setIsMenuOpen} className="animation-navbar">
       <NavbarContent>
         <NavbarMenuToggle aria-label={isMenuOpen ? 'Close menu' : 'Open menu'} className="sm:hidden" />
         <NavbarBrand>
@@ -113,39 +105,39 @@ export function NavBar() {
       <NavbarMenu className="pt-6">
         <NavbarMenuItem className="flex items-center gap-2 my-2">
           <FaHouse className="text-3xl text-success" />
-          <Link color="foreground" className="w-full" href="#" size="lg">
+          <Link color="foreground" className="w-full" href="/home" size="lg">
             Inicio
           </Link>
         </NavbarMenuItem>
         <Divider />
         <NavbarMenuItem className="flex items-center gap-2 my-2">
           <GrFavorite className="text-3xl text-danger" />
-          <Link color="foreground" className="w-full" href="#" size="lg">
+          <Link color="foreground" className="w-full" href="/blog" size="lg">
             Blog
           </Link>
         </NavbarMenuItem>
         <NavbarMenuItem className="pl-3 flex items-center gap-2">
           <FiBookOpen className="text-3xl text-warning" />
-          <Link color="foreground" className="w-full" href="#" size="lg">
+          <Link color="foreground" className="w-full" href="/blog/posts" size="lg">
             Posts
           </Link>
         </NavbarMenuItem>
         <NavbarMenuItem className="pl-3 flex items-center gap-2">
           <FaCodepen className="text-3xl text-primary" />
-          <Link color="foreground" className="w-full" href="#" size="lg">
+          <Link color="foreground" className="w-full" href="/blog/snippets" size="lg">
             Snippets
           </Link>
         </NavbarMenuItem>
         <NavbarMenuItem className="pl-3 flex items-center gap-2">
           <FiBook className="text-3xl text-secondary" />
-          <Link color="foreground" className="w-full" href="#" size="lg">
+          <Link color="foreground" className="w-full" href="/blog/notes" size="lg">
             Notes
           </Link>
         </NavbarMenuItem>
         <Divider />
         <NavbarMenuItem className="flex items-center gap-2 my-2">
           <FaNetworkWired className="text-3xl text-primary" />
-          <Link color="foreground" className="w-full" href="#" size="lg">
+          <Link color="foreground" className="w-full" href="/works" size="lg">
             Proyectos
           </Link>
         </NavbarMenuItem>

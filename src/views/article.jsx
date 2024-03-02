@@ -34,6 +34,8 @@ export function Article() {
    */
   useEffect(() => setIcon(randomItem(icons)), []);
 
+  console.log(page);
+
   return (
     <main className="w-full max-w-[700px] m-auto p-5 flex flex-col gap-2 relative">
       <ValidatorVariable variable={page} elseComponent={<Skeleton className="h-7 w-2/5 mb-4 rounded-lg" />}>
@@ -54,7 +56,7 @@ export function Article() {
       <ValidatorVariable variable={page} elseComponent={<LoaderPage />}>
         <div>
           <ImageShadow width="100%" height={200} url={cover} />
-          <h1 className="bg-black/60 backdrop-blur-lg shadow-lg shadow-slate-200/10 text-2xl text-white capitalize rounded-lg -translate-y-8 p-3 ml-4 font-bold w-[fit-content]">
+          <h1 className="bg-white/60 dark:bg-black/60 backdrop-blur-lg shadow-lg shadow-slate-200/10 text-2xl text-black dark:text-white capitalize rounded-lg -translate-y-8 p-3 ml-4 font-bold w-[fit-content]">
             <span className="text-3xl">{icon}</span>
             {/* <FaCodeBranch className="text-blue-400" /> */}
             {!id ? '' : id.split('-')[1]}

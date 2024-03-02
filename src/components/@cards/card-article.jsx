@@ -33,7 +33,7 @@ import { Link } from 'react-router-dom';
 export function CardArticle({ url, title, description, path, height, width, blurred, zoomed }) {
   return (
     <Link to={path}>
-      <div className="w-full max-w-[300px] min-h-[230px] sm:min-h-[290px] lg:min-h-[270px] p-3 rounded-lg hover:bg-neutral-800/70 transition-background duration-300 animation-WatchScaleOpacity">
+      <div className="w-full max-w-[300px] min-h-[230px] sm:min-h-[290px] lg:min-h-[270px] p-3 rounded-lg hover:bg-neutral-200/70 dark:hover:bg-neutral-800/70 transition-background duration-300 animation-WatchScaleOpacity">
         <div className="w-full m-auto flex justify-center items-center">
           <Image
             isZoomed={zoomed}
@@ -47,10 +47,10 @@ export function CardArticle({ url, title, description, path, height, width, blur
           />
         </div>
         <div className="w-full flex flex-col gap-2 mt-3">
-          <h1 className="text-[0.8rem] sm:text-md capitalize text-neutral-200">
+          <h1 className="text-[0.8rem] sm:text-md capitalize font-bold text-blue-700/60 dark:text-neutral-200">
             {truncate(title ?? 'Articulo o proyecto', 45)}
           </h1>
-          <p className="text-[0.7rem] sm:text-[0.8rem] text-neutral-200/60">
+          <p className="text-[0.7rem] sm:text-[0.8rem] text-neutral-950/80 dark:text-neutral-200/60">
             {truncate(
               description ??
                 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deserunt obcaecati necessitatibus cum eaque beatae perferendis suscipit, accusamus inventore repellat',

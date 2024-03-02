@@ -15,7 +15,7 @@ export function ButtonUpScroll() {
       color="primary"
       variant="flat"
       aria-label="UP Button"
-      className="fixed bottom-5 left-5 animate-bounce"
+      className="fixed bottom-3 left-3 animate-bounce"
       onClick={ScrollMoveUp}
     >
       <FaArrowUp className="text-xl" />

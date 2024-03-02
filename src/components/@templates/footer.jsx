@@ -11,7 +11,7 @@ export function Footer() {
     <footer className="w-full p-6 mt-20">
       <div className="w-full h-full min-h-[100px] rounded-xl bg-neutral-100/90 dark:bg-neutral-950/80 shadow-xl shadow-neutral-950/10 max-w-[1000px] m-auto flex flex-wrap justify-between items-center gap-5 py-3 px-5">
         <div className="w-full md:w-[fit-content] flex justify-center">
-          <p className="flex items-center gap-2 text-3xl text-neutral-200/70">
+          <p className="flex items-center gap-2 text-3xl font-bold text-neutral-800/80 dark:text-neutral-200/70">
             <PiTrademarkRegisteredBold />
             EddyBel
           </p>

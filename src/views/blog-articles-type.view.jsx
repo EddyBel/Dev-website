@@ -25,16 +25,14 @@ export function BlogArticlesType() {
   return (
     <main className="w-full max-w-[1000px] m-auto flex flex-col gap-5 p-5">
       <section className="w-full p-3">
-        <div className="w-full rounded-3xl flex items-center p-3 bg-neutral-900">
+        <div className="w-full rounded-3xl flex items-center p-3 shadow-xl bg-neutral-200/80 dark:bg-neutral-900 animation-search">
+          <FiSearch className="ml-3 opacity-70" />
           <input
             type="text"
             placeholder="¿Que articulo buscas?"
-            className="w-full p-2 bg-transparent border-none outline-none"
+            className="w-full p-2 bg-transparent dark:placeholder:text-gray-200/80 placeholder:text-gray-950/80 border-none outline-none"
             onChange={handdleSearch}
           />
-          <Button isIconOnly color="primary" aria-label="Like">
-            <FiSearch />
-          </Button>
         </div>
       </section>
 
@@ -45,8 +43,8 @@ export function BlogArticlesType() {
             {newPosts.posts[page - 1]?.map((post) => (
               <div className="m-auto" key={Math.random()}>
                 <CardArticle
-                  // height={200}
                   width={'100%'}
+                  height={200}
                   url={post?.cover}
                   title={post?.name}
                   description={post?.description}

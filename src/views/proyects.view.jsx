@@ -139,7 +139,7 @@ export function Proyects() {
             </Dropdown>
           </div>
 
-          <p className="text-neutral-200/50">Total {repos?.length ?? 0} Repositorios</p>
+          <p className="text-neutral-950/60 dark:text-neutral-200/50">Total {repos?.length ?? 0} Repositorios</p>
 
           <Table
             color="secondary"

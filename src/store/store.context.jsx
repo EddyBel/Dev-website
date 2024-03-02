@@ -6,6 +6,7 @@ export const StoreContext = createContext();
 
 export function StoreProvider({ children }) {
   const [information, setInformation] = useState();
+  const [theme, setTheme] = useState(false);
   const user = {
     avatar: 'https://avatars.githubusercontent.com/u/111319309?v=4',
     userName: 'EddyBel',
@@ -76,14 +77,33 @@ export function StoreProvider({ children }) {
     } else getApi();
   };
 
+  function strToBool(str) {
+    if (str) {
+      const newstr = str?.toLowerCase();
+      if (newstr === 'true') return true;
+      if (newstr === 'false') return false;
+    }
+  }
+
+  /** Ejecución cada que cambia el estado del tema */
+  useEffect(() => {
+    const html = document.documentElement;
+    if (theme) html.classList.remove('dark');
+    else html.classList.add('dark');
+  }, [theme]);
+
   /** Ejecución inicial al arrancar la web */
   useEffect(() => {
     getDataInCaheOrAPI();
+    const bool = strToBool(localStorage.getItem('theme'));
+    if (bool) setTheme(bool);
   }, []);
 
   const values = {
     user,
     information,
+    theme,
+    setTheme,
   };
 
   return <StoreContext.Provider value={values}>{children}</StoreContext.Provider>;

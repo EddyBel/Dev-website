@@ -6,6 +6,30 @@
   animation: WatchDownUpOpacity 400ms normal;
 }
 
+.animation-navbar {
+  animation: WatchUpDownOpacity 800ms normal;
+  animation-fill-mode: both;
+  animation-delay: 300ms;
+}
+
+.animation-banner {
+  animation: WatchScaleOpacity 900ms normal;
+  animation-fill-mode: both;
+  animation-delay: 300ms;
+}
+
+.animation-card-proyects {
+  animation: WatchDownUpOpacity 900ms normal;
+  animation-fill-mode: both;
+  animation-delay: 400ms;
+}
+
+.animation-search {
+  animation: fadeIn 800ms normal;
+  animation-fill-mode: both;
+  animation-delay: 500ms;
+}
+
 @keyframes WatchScaleOpacity {
   0% {
     transform: scale(1.1);
@@ -23,6 +47,26 @@
   }
   100% {
     transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+@keyframes WatchUpDownOpacity {
+  0% {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
     opacity: 1;
   }
 }

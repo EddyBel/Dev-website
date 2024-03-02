@@ -22,7 +22,7 @@ export function Notion({ type, data }) {
 function BulletedItem({ content }) {
   return (
     <div className="pl-5 flex items-center gap-2">
-      <div className="rounded-full min-w-2 min-h-2 bg-neutral-200/80"></div>
+      <div className="rounded-full min-w-2 min-h-2 bg-neutral-800/70 dark:bg-neutral-200/80"></div>
       <Paragraph content={content} />
     </div>
   );
@@ -31,7 +31,7 @@ function BulletedItem({ content }) {
 function NumberedItem({ content }) {
   return (
     <div className="pl-5 flex items-center gap-2">
-      <div className="rounded-full min-w-2 min-h-2 border-[2px] border-neutral-200/80"></div>
+      <div className="rounded-full min-w-2 min-h-2 border-[2px] border-neutral-800/70 dark:border-neutral-200/80"></div>
       <Paragraph content={content} />
     </div>
   );
@@ -40,7 +40,7 @@ function NumberedItem({ content }) {
 function Paragraph({ content }) {
   // style={{ whiteSpace: 'pre' }}
   return (
-    <p className="text-md text-neutral-200/70">
+    <p className="text-md text-neutral-950/70 dark:text-neutral-200/70">
       {content?.map((p) => {
         if (p.type === 'text') {
           const type = p.annotations;
@@ -58,7 +58,10 @@ function Paragraph({ content }) {
             );
           if (type.code)
             return (
-              <span key={p.plain_text} className="p-[3px] bg-neutral-800 text-red-300/70 scale-95 rounded-lg">
+              <span
+                key={p.plain_text}
+                className="p-[3px] bg-neutral-300 text-danger dark:bg-neutral-800 dark:text-red-300/70 scale-95 rounded-lg"
+              >
                 {p.plain_text}
               </span>
             );
@@ -67,7 +70,10 @@ function Paragraph({ content }) {
           } else return p.plain_text;
         } else if (p.type == 'equation') {
           return (
-            <span key={p.plain_text} className="p-[4px] bg-neutral-800 text-neutral-200/70 rounded-lg">
+            <span
+              key={p.plain_text}
+              className="p-[4px] bg-neutral-300 font-bold text-neutral-950/60 dark:bg-neutral-800 dark:text-neutral-200/70 rounded-lg"
+            >
               {p.plain_text}
             </span>
           );
@@ -79,7 +85,7 @@ function Paragraph({ content }) {
 
 function Heading1({ content }) {
   return (
-    <h1 className="text-3xl text-neutral-200/90 font-bold">
+    <h1 className="text-3xl text-neutral-950/80 dark:text-neutral-200/90 font-bold">
       {content?.map((p) => {
         if (p.type === 'text') {
           const type = p.annotations;
@@ -110,7 +116,7 @@ function Heading1({ content }) {
 
 function Heading2({ content }) {
   return (
-    <h2 className="text-2xl text-neutral-200/90 font-bold">
+    <h2 className="text-2xl text-neutral-950/80 dark:text-neutral-200/90 font-bold">
       {content?.map((p) => {
         if (p.type === 'text') {
           const type = p.annotations;
@@ -141,7 +147,7 @@ function Heading2({ content }) {
 
 function Heading3({ content }) {
   return (
-    <h3 className="text-xl text-neutral-200/90 font-bold">
+    <h3 className="text-xl text-neutral-950/80 dark:text-neutral-200/90 font-bold">
       {content?.map((p) => {
         if (p.type === 'text') {
           const type = p.annotations;
@@ -172,7 +178,7 @@ function Heading3({ content }) {
 
 function Quote({ content }) {
   return (
-    <blockquote className="w-full border-l-3 border-neutral-200/40 p-2 my-4">
+    <blockquote className="w-full border-l-3 border-neutral-950/60 dark:border-neutral-200/40 p-2 my-4">
       <Paragraph content={content} />
     </blockquote>
   );
@@ -180,7 +186,7 @@ function Quote({ content }) {
 
 function Callout({ content }) {
   return (
-    <div className="px-2 py-4 bg-purple-950/90 rounded-lg">
+    <div className="px-2 py-4 bg-primary/50 rounded-lg">
       <Paragraph content={content} />
     </div>
   );

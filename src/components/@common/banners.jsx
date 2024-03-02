@@ -31,7 +31,7 @@ export function BannerShadow({ children, background }) {
   const classBlur = `w-full rounded-xl overflow-hidden mt-4 min-h-[450px] blur-lg opacity-50 bg-cover bg-center`;
   const classNormal = `w-full rounded-xl overflow-hidden mt-4 min-h-[450px] absolute left-0 top-0 bg-cover bg-center`;
   return (
-    <div className="relative">
+    <div className="relative animation-banner">
       <div className={classBlur} style={{ backgroundImage: `url("${background}")` }}></div>
       <div className={classNormal} style={{ backgroundImage: `url("${background}")` }}>
         <div className="absolute w-full h-full bg-neutral-900/30">

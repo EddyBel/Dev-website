@@ -10,6 +10,7 @@ export const BlogContext = createContext();
 export function BlogProvider({ children }) {
   const [blog, setBlog] = useState();
   const [page, setPage] = useState();
+  const [lastPosts, setLastPosts] = useState();
   const [covers, setCovers] = useState([
     'https://images.pexels.com/photos/5483071/pexels-photo-5483071.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
     'https://static.wixstatic.com/media/nsplsh_4d534e385446684a306973~mv2_d_5184_3456_s_4_2.jpg/v1/fill/w_1976,h_756,al_c,q_90/nsplsh_4d534e385446684a306973~mv2_d_5184_3456_s_4_2.webp',
@@ -94,6 +95,20 @@ export function BlogProvider({ children }) {
     } else getAPI();
   };
 
+  const getLastPosts = () => {
+    if (validateValues(blog)) {
+      setLastPosts({
+        snippets: blog.PostsSnippets?.slice(-4),
+        posts: blog.PostsBlog?.slice(-4),
+        notes: blog.PostsNotes?.slice(-4),
+      });
+    }
+  };
+
+  useEffect(() => {
+    getLastPosts();
+  }, [blog]);
+
   /** Ejecución inicial nada mas iniciar la web */
   useEffect(() => {
     getPostsInCacheOrPost();
@@ -104,6 +119,7 @@ export function BlogProvider({ children }) {
     page,
     covers,
     blog,
+    lastPosts,
   };
 
   return <BlogContext.Provider value={values}>{children}</BlogContext.Provider>;

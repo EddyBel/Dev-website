@@ -23,14 +23,13 @@ export function Home() {
             ¡Hola! soy Eduardo
             {/* <StatusBar status={true} url={SocialNetworks.Linkedin.url} /> */}
           </h1>
-          <p className="text-neutral-100/90 text-[0.8rem] md:text-md">
+          <p className="text-neutral-100/90 text-[0.8rem] md:text-md lg:text-[1.1rem]">
             Desarrollador <span className="p-1 bg-secondary text-neutral-200 rounded-xl font-bold">Web</span> y{' '}
             <span className="p-1 bg-success text-neutral-200 rounded-xl font-bold">Mobile</span>, especializado en la
-            creación de experiencias digitales excepcionales. Con habilidades tanto en el desarrollo{' '}
+            creación de experiencias digitales. Con habilidades tanto en el desarrollo{' '}
             <span className="p-1 bg-warning text-neutral-200 rounded-xl font-bold">Front-End</span> y{' '}
-            <span className="p-1 bg-warning text-neutral-200 rounded-xl font-bold">Back-End</span> para{' '}
-            <span className="p-1 bg-secondary text-neutral-200 rounded-xl font-bold">Web</span>, como en el desarrollo
-            de aplicaciones móviles para{' '}
+            <span className="p-1 bg-warning text-neutral-200 rounded-xl font-bold">Back-End</span>, como en el
+            desarrollo de aplicaciones móviles para{' '}
             <span className="p-1 bg-primary text-neutral-200 rounded-xl font-bold">iOS</span> y{' '}
             <span className="p-1 bg-success text-neutral-200 rounded-xl font-bold">Android</span>.
           </p>

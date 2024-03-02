@@ -1,13 +1,15 @@
 import { PrismAsync as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { dracula } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import { dracula, coldarkCold } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { Code, Button } from '@nextui-org/react';
 import { IoCopy } from 'react-icons/io5';
 import { FaCheck } from 'react-icons/fa';
 import { useState } from 'react';
+import { useStore } from '../../hook/store.context';
 
-export function CodeBlock({ code, theme, lang, color }) {
+export function CodeBlock({ code, lang, color }) {
   const [copy, setCopy] = useState(false);
-  const style = !theme ? dracula : theme;
+  const { theme } = useStore();
+  const style = theme ? coldarkCold : dracula;
   const background = !color ? 'primary' : color;
   console.log(lang);
 
@@ -19,7 +21,9 @@ export function CodeBlock({ code, theme, lang, color }) {
 
   return (
     <Code color={background} className="relative">
-      <div className="p-2 bg-neutral-950 rounded-md w-[fit-content] mt-2 capitalize opacity-85">{lang}</div>
+      <div className="p-2 font-bold bg-neutral-300 dark:bg-neutral-950 rounded-md w-[fit-content] mt-2 capitalize opacity-85">
+        {lang}
+      </div>
       <SyntaxHighlighter
         language={!lang ? 'javascript' : FormatterLang(lang)}
         style={style}
