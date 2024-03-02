@@ -144,7 +144,7 @@ export function Proyects() {
           <Table
             color="secondary"
             selectionMode="single"
-            aria-label="Example static collection table"
+            aria-label="Github repos table"
             classNames={{
               table: validateNewRepos() ? 'min-h-[400px]' : 'min-h-auto',
             }}
@@ -158,9 +158,9 @@ export function Proyects() {
             </TableHeader>
             <TableBody items={10} isLoading={validateNewRepos()} loadingContent={<Spinner />}>
               {NewRepos.repos[page - 1]?.map((repo) => (
-                <TableRow key={repo?.id} href={repo?.url} as={Link}>
+                <TableRow key={repo?.id} href={repo?.url} as={Link} className="cursor-pointer">
                   <TableCell>
-                    <FaGithub className="text-2xl text-neutral-200/60" />
+                    <FaGithub className="text-2xl text-neutral-950/70 dark:text-neutral-200/60" />
                   </TableCell>
                   <TableCell>
                     <User

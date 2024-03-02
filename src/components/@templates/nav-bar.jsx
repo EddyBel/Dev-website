@@ -112,25 +112,25 @@ export function NavBar() {
         <Divider />
         <NavbarMenuItem className="flex items-center gap-2 my-2">
           <GrFavorite className="text-3xl text-danger" />
-          <Link color="foreground" className="w-full" href="/blog" size="lg">
+          <Link color="foreground" className="w-full" href="/home/blog" size="lg">
             Blog
           </Link>
         </NavbarMenuItem>
         <NavbarMenuItem className="pl-3 flex items-center gap-2">
           <FiBookOpen className="text-3xl text-warning" />
-          <Link color="foreground" className="w-full" href="/blog/posts" size="lg">
+          <Link color="foreground" className="w-full" href="/home/blog/posts" size="lg">
             Posts
           </Link>
         </NavbarMenuItem>
         <NavbarMenuItem className="pl-3 flex items-center gap-2">
           <FaCodepen className="text-3xl text-primary" />
-          <Link color="foreground" className="w-full" href="/blog/snippets" size="lg">
+          <Link color="foreground" className="w-full" href="/home/blog/snippets" size="lg">
             Snippets
           </Link>
         </NavbarMenuItem>
         <NavbarMenuItem className="pl-3 flex items-center gap-2">
           <FiBook className="text-3xl text-secondary" />
-          <Link color="foreground" className="w-full" href="/blog/notes" size="lg">
+          <Link color="foreground" className="w-full" href="/home/blog/notes" size="lg">
             Notes
           </Link>
         </NavbarMenuItem>
