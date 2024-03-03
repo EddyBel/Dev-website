@@ -5,6 +5,7 @@ import { PiTrademarkRegisteredBold } from 'react-icons/pi';
 import { FaBagShopping } from 'react-icons/fa6';
 import { FaGitlab } from 'react-icons/fa6';
 import { SiGmail } from 'react-icons/si';
+import { URL_GITHUB, URL_GITLAB, URL_GMAIL, URL_LINKEDIN, URL_STORE } from '../../web.config';
 
 export function Footer() {
   return (
@@ -17,23 +18,19 @@ export function Footer() {
           </p>
         </div>
         <div className="w-full md:w-[fit-content] flex justify-center md:justify-normal gap-2">
-          <ButtonSocialNetwork color="default" label="Github" path="https://github.com/EddyBel">
+          <ButtonSocialNetwork color="default" label="Github" path={URL_GITHUB}>
             <IoLogoGithub className="text-2xl" />
           </ButtonSocialNetwork>
-          <ButtonSocialNetwork color="warning" label="Gitlab" path="https://gitlab.com/EddyBel">
+          <ButtonSocialNetwork color="warning" label="Gitlab" path={URL_GITLAB}>
             <FaGitlab className="text-2xl" />
           </ButtonSocialNetwork>
-          <ButtonSocialNetwork
-            color="primary"
-            label="Linkedin"
-            path="https://www.linkedin.com/in/eduardo-rangel-eddybel/"
-          >
+          <ButtonSocialNetwork color="primary" label="Linkedin" path={URL_LINKEDIN}>
             <FaLinkedin className="text-2xl" />
           </ButtonSocialNetwork>
-          <ButtonSocialNetwork color="danger" label="Gmail" path="mailto:dante61918@gmail.com">
+          <ButtonSocialNetwork color="danger" label="Gmail" path={`mailto:${URL_GMAIL}`}>
             <SiGmail className="text-2xl" />
           </ButtonSocialNetwork>
-          <ButtonSocialNetwork label="Shop" color="secondary" path="/">
+          <ButtonSocialNetwork label="Shop" color="secondary" path={URL_STORE}>
             <FaBagShopping className="text-2xl" />
           </ButtonSocialNetwork>
         </div>

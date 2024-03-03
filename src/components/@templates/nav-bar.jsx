@@ -12,8 +12,6 @@ import {
   Divider,
 } from '@nextui-org/react';
 import { AvatarCard } from '../@common/avatar-cards';
-import { useStore } from '../../hook/store.context';
-// import { Navigation } from '../../web.config.json';
 import { DropdownNavbar } from '../@buttons/dropdown-navbar';
 import { FiBook } from 'react-icons/fi';
 import { FiBookOpen } from 'react-icons/fi';
@@ -22,9 +20,21 @@ import { FaCodepen } from 'react-icons/fa6';
 import { FaHouse } from 'react-icons/fa6';
 import { FaNetworkWired } from 'react-icons/fa6';
 import { IoDocumentText } from 'react-icons/io5';
+import {
+  SOURCE_CV,
+  URL_GITHUB,
+  URL_LINKEDIN,
+  USERNAME,
+  USERNAME_PROFILE,
+  USER_AVATAR,
+  USER_DESCRIPTION,
+  USER_HASHTAG,
+  USER_POSITION,
+  USER_STATUS,
+} from '../../web.config';
+// import { Navigation } from '../../web.config.json';
 
 export function NavBar() {
-  const { user } = useStore();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
@@ -33,16 +43,16 @@ export function NavBar() {
         <NavbarMenuToggle aria-label={isMenuOpen ? 'Close menu' : 'Open menu'} className="sm:hidden" />
         <NavbarBrand>
           <AvatarCard
-            img={user.avatar}
-            name={user.userName}
-            userProfile={user.userNameProfile}
-            position={user.userPosition}
-            status={user.status}
-            hashtag={user.hashtag}
-            description={user.description}
-            github={user.github}
-            linkedin={user.linkedin}
-            key={`avatar-card-${user.Name}`}
+            img={USER_AVATAR}
+            name={USERNAME}
+            userProfile={USERNAME_PROFILE}
+            position={USER_POSITION}
+            status={USER_STATUS}
+            hashtag={USER_HASHTAG}
+            description={USER_DESCRIPTION}
+            github={URL_GITHUB}
+            linkedin={URL_LINKEDIN}
+            key={`avatar-card-eddybel`}
           />
         </NavbarBrand>
       </NavbarContent>
@@ -93,7 +103,7 @@ export function NavBar() {
           <Button
             as={Link}
             color="primary"
-            href="https://drive.google.com/file/d/1UyG1a-AtpKxjAiR6kGFWTxqivl-SYAq6/view?usp=sharing"
+            href={SOURCE_CV}
             variant="flat"
             className="text-md font-bold"
             startContent={<IoDocumentText className="text-xl" />}
