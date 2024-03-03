@@ -6,19 +6,7 @@ export const StoreContext = createContext();
 
 export function StoreProvider({ children }) {
   const [information, setInformation] = useState();
-  const [theme, setTheme] = useState(false);
-  const user = {
-    avatar: 'https://avatars.githubusercontent.com/u/111319309?v=4',
-    userName: 'EddyBel',
-    userNameProfile: '@eddybel',
-    userPosition: 'Full-Stack Developer',
-    description:
-      'Desarrollador full-stack con pasión por los videojuegos. Me encanta crear experiencias interactivas y divertidas para los usuarios.',
-    hashtag: '#AmazingCode',
-    github: 'https://github.com/EddyBel',
-    linkedin: 'https://www.linkedin.com/in/eduardo-rangel-eddybel/',
-    status: true,
-  };
+  const [theme, setTheme] = useState(true);
   const localRef = 'info';
 
   /** Realiza las peticiones a la API */
@@ -100,7 +88,6 @@ export function StoreProvider({ children }) {
   }, []);
 
   const values = {
-    user,
     information,
     theme,
     setTheme,
