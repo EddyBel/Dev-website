@@ -25,18 +25,16 @@ import {
 } from '@nextui-org/react';
 import { useMemo, useState } from 'react';
 import { FaGithub } from 'react-icons/fa6';
-import { useStore } from '../hook/store.context';
 import { truncate } from '../utils/formatter';
 import { randomItem } from '../utils/random';
-import { validateArrays, validateValues } from '../utils/validations';
+import { validateArrays } from '../utils/validations';
+import { USERNAME_PROFILE, USER_AVATAR } from '../web.config';
 
 const defaultLanguaje = 'Ninguno';
 
 export function Proyects() {
   const [selectedKeys, setSelectedKeys] = useState(new Set(['Todos']));
   const selectedValue = useMemo(() => Array.from(selectedKeys).join(', ').replaceAll('_', ' '), [selectedKeys]);
-
-  const { user } = useStore();
   const { repos } = useGithub();
   const newReposByTag = useFilterByTag(repos, selectedValue);
   const { newRepos, setSearh } = useSearchRepo(newReposByTag);
@@ -164,11 +162,11 @@ export function Proyects() {
                   </TableCell>
                   <TableCell>
                     <User
-                      avatarProps={{ radius: 'lg', src: user.avatar }}
+                      avatarProps={{ radius: 'lg', src: USER_AVATAR }}
                       description={truncate(repo?.fullName, 35)}
                       name={truncate(repo?.name, 35)}
                     >
-                      {user.email}
+                      {USERNAME_PROFILE}
                     </User>
                   </TableCell>
                   <TableCell>
