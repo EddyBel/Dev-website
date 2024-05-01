@@ -31,7 +31,7 @@ import {
   USER_HASHTAG,
   USER_POSITION,
   USER_STATUS,
-} from '../../web.config';
+} from '../../constants/information';
 // import { Navigation } from '../../web.config.json';
 
 export function NavBar() {
@@ -59,33 +59,39 @@ export function NavBar() {
 
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
         <NavbarItem>
-          <Link color={'foreground'} className="hover:text-blue-400 transition-colors duration-150" href={'/home'}>
+          <Button
+            color="foreground"
+            className="hover:bg-white hover:text-neutral-950 text-white py-1 px-2 rounded-3xl transition-colors duration-150 sulphur-point-bold"
+            href={'/home'}
+            as={Link}
+          >
             Inicio
-          </Link>
+          </Button>
         </NavbarItem>
         <DropdownNavbar
           label="Blog"
+          customClassName="hover:bg-white hover:text-neutral-950 rounded-3xl transition-colors duration-150 sulphur-point-bold"
           items={[
+            // {
+            //   label: 'Ultimos articulos',
+            //   icon: <GrFavorite className="text-3xl text-danger" />,
+            //   description: 'Articulos destacados y recientes.',
+            //   route: '/home/blog',
+            // },
             {
-              label: 'Ultimos articulos',
-              icon: <GrFavorite className="text-3xl text-danger" />,
-              description: 'Articulos destacados y recientes.',
-              route: '/home/blog',
-            },
-            {
-              label: 'Posts',
+              label: 'Articulos',
               icon: <FiBookOpen className="text-3xl text-warning" />,
-              description: 'Articulos y tutoriales de código.',
+              description: 'Articulos y tutoriales.',
               route: '/home/blog/posts',
             },
             {
-              label: 'Snippets',
+              label: 'Código',
               icon: <FaCodepen className="text-3xl text-primary" />,
-              description: 'Snippets de programación y ejercicios.',
+              description: 'Snippets o atajos de programación.',
               route: '/home/blog/snippets',
             },
             {
-              label: 'Apuntes',
+              label: 'Notas de Universidad',
               icon: <FiBook className="text-3xl text-secondary" />,
               description: 'Apuntes de la universidad.',
               route: '/home/blog/notes',
@@ -93,9 +99,14 @@ export function NavBar() {
           ]}
         />
         <NavbarItem>
-          <Link color={'foreground'} className="hover:text-blue-400 transition-colors duration-150" href="/works">
+          <Button
+            color="foreground"
+            className="hover:bg-white hover:text-neutral-950 text-white py-1 px-2 rounded-3xl transition-colors duration-150 sulphur-point-bold"
+            as={Link}
+            href="/works"
+          >
             Proyectos
-          </Link>
+          </Button>
         </NavbarItem>
       </NavbarContent>
       <NavbarContent justify="end">
@@ -107,6 +118,8 @@ export function NavBar() {
             variant="flat"
             className="text-md font-bold"
             startContent={<IoDocumentText className="text-xl" />}
+            target="_blank"
+            rel="noopener noreferrer"
           >
             CV
           </Button>

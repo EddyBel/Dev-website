@@ -1,19 +1,21 @@
 import { Image } from '@nextui-org/react';
 import { CodeBlock } from './code';
 
-export function Notion({ type, data }) {
+export function Notion({ block }) {
   try {
-    if (type === 'paragraph') return <Paragraph content={data.rich_text} />;
-    if (type === 'heading_1') return <Heading1 content={data.rich_text} />;
-    if (type === 'heading_2') return <Heading2 content={data.rich_text} />;
-    if (type === 'heading_3') return <Heading3 content={data.rich_text} />;
-    if (type === 'quote') return <Quote content={data.rich_text} />;
-    if (type === 'image') return <Image src={data.external.url} width={'100%'} />;
-    if (type === 'callout') return <Callout content={data.rich_text} />;
-    if (type === 'numbered_list_item') return <NumberedItem content={data.rich_text} />;
-    if (type === 'bulleted_list_item') return <BulletedItem content={data.rich_text} />;
-    if (type === 'code')
-      return <CodeBlock color={'default'} code={data.rich_text[0].plain_text} lang={data.language} />;
+    const { data, type, language, src } = block;
+    console.log(block);
+
+    if (type === 'paragraph') return <Paragraph content={data} />;
+    if (type === 'heading_1') return <Heading1 content={data} />;
+    if (type === 'heading_2') return <Heading2 content={data} />;
+    if (type === 'heading_3') return <Heading3 content={data} />;
+    if (type === 'quote') return <Quote content={data} />;
+    if (type === 'image') return <Image src={src} width={'100%'} />;
+    if (type === 'callout') return <Callout content={data} />;
+    if (type === 'numbered_list_item') return <NumberedItem content={data} />;
+    if (type === 'bulleted_list_item') return <BulletedItem content={data} />;
+    if (type === 'code') return <CodeBlock color={'default'} code={data[0]?.plain_text} lang={language} />;
   } catch {
     return <></>;
   }
@@ -38,9 +40,8 @@ function NumberedItem({ content }) {
 }
 
 function Paragraph({ content }) {
-  // style={{ whiteSpace: 'pre' }}
   return (
-    <p className="text-md text-neutral-950/70 dark:text-neutral-200/70">
+    <p className="text-[0.8rem] text-neutral-950/70 dark:text-neutral-200/70 source-code-pro text-pretty">
       {content?.map((p) => {
         if (p.type === 'text') {
           const type = p.annotations;
@@ -52,7 +53,7 @@ function Paragraph({ content }) {
             );
           if (type.italic)
             return (
-              <span key={p.plain_text} className="italic">
+              <span key={p.plain_text} className="italic text-yellow-400">
                 {p.plain_text}
               </span>
             );
@@ -85,7 +86,7 @@ function Paragraph({ content }) {
 
 function Heading1({ content }) {
   return (
-    <h1 className="text-3xl text-neutral-950/80 dark:text-neutral-200/90 font-bold">
+    <h1 className="text-3xl text-neutral-950/80 dark:text-neutral-200/90 source-code-pro text-balance">
       {content?.map((p) => {
         if (p.type === 'text') {
           const type = p.annotations;
@@ -116,7 +117,7 @@ function Heading1({ content }) {
 
 function Heading2({ content }) {
   return (
-    <h2 className="text-2xl text-neutral-950/80 dark:text-neutral-200/90 font-bold">
+    <h2 className="text-2xl text-neutral-950/80 dark:text-neutral-200/90 source-code-pro text-balance">
       {content?.map((p) => {
         if (p.type === 'text') {
           const type = p.annotations;
@@ -147,7 +148,7 @@ function Heading2({ content }) {
 
 function Heading3({ content }) {
   return (
-    <h3 className="text-xl text-neutral-950/80 dark:text-neutral-200/90 font-bold">
+    <h3 className="text-xl text-neutral-950/80 dark:text-neutral-200/90 source-code-pro text-balance">
       {content?.map((p) => {
         if (p.type === 'text') {
           const type = p.annotations;
@@ -186,7 +187,8 @@ function Quote({ content }) {
 
 function Callout({ content }) {
   return (
-    <div className="px-2 py-4 bg-primary/50 rounded-lg">
+    <div className="px-4 py-4 bg-primary/50 rounded-lg flex gap-3">
+      <img src="https://cdn-icons-png.flaticon.com/512/2702/2702069.png" className="w-5 h-5 object-cover" />
       <Paragraph content={content} />
     </div>
   );

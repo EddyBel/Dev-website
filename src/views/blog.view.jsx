@@ -10,6 +10,9 @@ import { PostsLoader } from '../components/@loaders/blog-posts.loader';
 import { validateArrays } from '../utils/validations';
 import { useBlog } from '../hook/blog.context';
 
+// Docker: https://appmaster.io/api/_files/QsSz55Kp9QZnZyprJbMRcX/download/
+// Flutter: https://www.syncfusion.com/blogs/wp-content/uploads/2019/12/Flutter_Trends_and_Community_Updates_Social.jpg
+
 export function Blog() {
   const { lastPosts } = useBlog();
 
@@ -19,14 +22,23 @@ export function Blog() {
         variable={validateArrays(lastPosts?.notes, lastPosts?.posts, lastPosts?.snippets)}
         elseComponent={<BannerLoader />}
       >
-        <BannerShadow background={CoverBlog}>
-          <h1 className="text-5xl capitalize font-extrabold text-neutral-100 flex items-center gap-3">
+        <BannerShadow
+          background={
+            'https://www.syncfusion.com/blogs/wp-content/uploads/2019/12/Flutter_Trends_and_Community_Updates_Social.jpg'
+          }
+        >
+          <h1 className="text-2xl capitalize font-extrabold text-neutral-100 flex items-center gap-3">
             Explora los articulos
           </h1>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam non recusandae harum nemo laudantium
+            voluptate, natus est dolores, reprehenderit animi corporis expedita inventore voluptatum hic eaque earum
+            maxime quod. Dicta?
+          </p>
         </BannerShadow>
       </ValidatorVariable>
 
-      <ValidatorVariable
+      {/* <ValidatorVariable
         variable={validateArrays(lastPosts?.notes, lastPosts?.posts, lastPosts?.snippets)}
         elseComponent={
           <section className="flex flex-wrap justify-center items-center gap-1 w-full">
@@ -100,9 +112,9 @@ export function Blog() {
             </Card>
           </div>
         </section>
-      </ValidatorVariable>
+      </ValidatorVariable> */}
 
-      <div className="w-full my-16"></div>
+      <div className="w-full my-4"></div>
 
       <ValidatorVariable
         variable={validateArrays(lastPosts?.notes, lastPosts?.posts, lastPosts?.snippets)}
@@ -118,6 +130,7 @@ export function Blog() {
                 title={post.name}
                 description={post.description}
                 zoomed={true}
+                blurred={true}
                 path={`/home/blog/posts/${post.id}-${post.name}`}
                 key={post.id}
               />
@@ -133,6 +146,7 @@ export function Blog() {
                 title={post.name}
                 description={post.description}
                 zoomed={true}
+                blurred={true}
                 path={`/home/blog/snippets/${post.id}-${post.name}`}
                 key={post.id}
               />
@@ -144,12 +158,14 @@ export function Blog() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 gap-y-12 my-9">
             {lastPosts?.notes?.map((post) => (
               <CardArticle
-                url={post.cover}
-                title={post.name}
-                description={post.description}
+                url={post?.cover}
+                title={post?.name}
+                description={post?.description}
+                matter={post?.matter}
                 zoomed={true}
-                path={`/home/blog/notes/${post.id}-${post.name}`}
-                key={post.id}
+                blurred={true}
+                path={`/home/blog/notes/${post?.id}-${post?.name}`}
+                key={post?.id}
               />
             ))}
           </div>

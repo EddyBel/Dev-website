@@ -1,10 +1,10 @@
 import { FiSearch } from 'react-icons/fi';
-import { Button, Pagination, Image } from '@nextui-org/react';
+import { Pagination, Image } from '@nextui-org/react';
 import { useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 import { CardArticle } from '../components/@cards/card-article';
 import { Validator } from '../components/@common/validators';
-import { SadDinosoure } from '../assets';
+import { BuhoBook } from '../assets';
 import { useDividePosts, usePostsByRoute, useSearchPost } from '../hook/post';
 import { validateArrays } from '../utils/validations';
 
@@ -21,6 +21,8 @@ export function BlogArticlesType() {
 
   /** Identifica que numero de pagina se va a cargar */
   const handlePage = (e) => setPage(e);
+
+  console.log(Posts);
 
   return (
     <main className="w-full max-w-[1000px] m-auto flex flex-col gap-5 p-5">
@@ -39,15 +41,16 @@ export function BlogArticlesType() {
       <section className="w-full py-9">
         {/* <h1 className="text-4xl capitalize mb-12 font-bold">Articulos</h1> */}
         <Validator validation={validateArrays(newPosts?.posts)} elseComponent={<MessageNotNotesFound />}>
-          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+          <div className="columns-2 gap-5 sm:columns-2 sm:gap-5 md:columns-8 lg:columns-4 [&>div:not(:first-child)]:mt-4">
             {newPosts.posts[page - 1]?.map((post) => (
-              <div className="m-auto" key={Math.random()}>
+              <div className="m-auto flex justify-center items-center" key={Math.random()}>
                 <CardArticle
                   width={'100%'}
                   height={200}
                   url={post?.cover}
                   title={post?.name}
                   description={post?.description}
+                  matter={post?.matter}
                   lang={post?.lang}
                   zoomed={true}
                   path={`/home/blog/${type}/${post?.id}-${post?.name}`}
@@ -68,7 +71,7 @@ export function BlogArticlesType() {
 function MessageNotNotesFound() {
   return (
     <div className="min-h-[250px] w-full flex flex-col items-center animation-WatchDownUpOpacity">
-      <Image src={SadDinosoure} width={300} isBlurred />
+      <Image src={BuhoBook} width={300} isBlurred />
     </div>
   );
 }

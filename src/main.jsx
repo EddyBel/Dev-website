@@ -10,6 +10,7 @@ import './styles/phones.css';
 import './styles/blob-mesh.css';
 import './styles/animations.css';
 import './styles/loader-fire.css';
+import './styles/fonts.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <BrowserRouter>

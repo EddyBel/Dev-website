@@ -1,8 +1,8 @@
 import { createContext, useEffect, useState } from 'react';
 import { getBlogPageContent, getBlogSnippets, getBlogNotes, getBlogPosts } from '../api/api';
 import { randomItem } from '../utils/random';
-import { CoversGlobal, CoversSnippets } from '../assets';
 import { validateObjectsNotNull, validateValues } from '../utils/validations';
+import { CoversCode, CoversUniversityNotes } from '../constants/cdn.constants';
 
 /** Contexto que guarda los posts del blog */
 export const BlogContext = createContext();
@@ -11,12 +11,6 @@ export function BlogProvider({ children }) {
   const [blog, setBlog] = useState();
   const [page, setPage] = useState();
   const [lastPosts, setLastPosts] = useState();
-  const [covers, setCovers] = useState([
-    'https://images.pexels.com/photos/5483071/pexels-photo-5483071.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-    'https://static.wixstatic.com/media/nsplsh_4d534e385446684a306973~mv2_d_5184_3456_s_4_2.jpg/v1/fill/w_1976,h_756,al_c,q_90/nsplsh_4d534e385446684a306973~mv2_d_5184_3456_s_4_2.webp',
-    'https://images.pexels.com/photos/4218883/pexels-photo-4218883.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-    'https://images.pexels.com/photos/15467761/pexels-photo-15467761/free-photo-of-person-scanning-qr-code-from-screen.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-  ]);
   const localRef = 'blog';
 
   const defaultDescriptionNotes =
@@ -53,9 +47,9 @@ export function BlogProvider({ children }) {
 
       if (validateValues(SnippetsContent, NotesContent, PostsContent)) {
         // Agrega propiedades estanda a todas las notas encontradas en la petición
-        const PostsSnippets = standardize(SnippetsContent, CoversSnippets, defaultDescriptionSnippets);
-        const PostsNotes = standardize(NotesContent, CoversGlobal, defaultDescriptionNotes);
-        const PostsBlog = standardize(PostsContent, CoversSnippets, defaultDescriptionPosts);
+        const PostsSnippets = standardize(SnippetsContent, CoversCode, defaultDescriptionSnippets);
+        const PostsNotes = standardize(NotesContent, CoversUniversityNotes, defaultDescriptionNotes);
+        const PostsBlog = standardize(PostsContent, CoversCode, defaultDescriptionPosts);
 
         //   Crea el objeto que contendra las notas
         const blog = {
@@ -117,7 +111,6 @@ export function BlogProvider({ children }) {
   const values = {
     updateContent,
     page,
-    covers,
     blog,
     lastPosts,
   };

@@ -46,7 +46,7 @@ export async function getBlogPosts() {
 }
 
 export async function getBlogPageContent(type, id) {
-  const response = await axios.get(`${API}/api/blog/${type}/${id}`);
+  const response = await axios.get(`${API}/api/blog/post/${id}`);
   if (response.status === 200) return response.data;
 }
 

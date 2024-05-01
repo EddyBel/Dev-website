@@ -29,6 +29,8 @@ import { truncate } from '../utils/formatter';
 import { randomItem } from '../utils/random';
 import { validateArrays } from '../utils/validations';
 import { USERNAME_PROFILE, USER_AVATAR } from '../web.config';
+import { CircularProgressBar } from '../components/@common/progress-bar';
+import { LANGUAGES_LEARNED } from '../constants/information';
 
 const defaultLanguaje = 'Ninguno';
 
@@ -41,7 +43,7 @@ export function Proyects() {
   const NewRepos = useDivideRepos(newRepos, 10);
   const Language = useExtractTags();
   const [page, setPage] = useState(1);
-  const Headers = ['💻', 'Nombre', 'Lenguaje', 'Licencia', 'Tamaño'];
+  const Headers = ['', 'Nombre', 'Lenguaje', 'Licencia', 'Tamaño'];
 
   function NumberToMegaBytes(number) {
     let megabytes = number / 1000;
@@ -74,11 +76,24 @@ export function Proyects() {
   return (
     <main className="w-full max-w-[1000px] m-auto flex flex-col gap-5 p-5">
       <ValidatorVariable variable={validateArrays(repos)} elseComponent={<BannerLoader />}>
-        <BannerShadow background={CoverWorks}>
+        {/* <BannerShadow background={CoverWorks}>
           <h1 className="text-5xl capitalize font-extrabold text-neutral-100 flex items-center gap-3">
             Explora mis respositorios
           </h1>
-        </BannerShadow>
+        </BannerShadow> */}
+
+        <section className="flex justify-center items-center gap-5 flex-wrap center py-9 animate-fade-up">
+          {LANGUAGES_LEARNED.map((lang) => (
+            <CircularProgressBar
+              key={lang.language}
+              percentage={lang.porcentage}
+              sqSize={130}
+              strokeWidth={7}
+              color={lang.color}
+              src={lang.img}
+            />
+          ))}
+        </section>
       </ValidatorVariable>
 
       <div className="w-full mt-12 mb-12">
@@ -155,43 +170,45 @@ export function Proyects() {
               ))}
             </TableHeader>
             <TableBody items={10} isLoading={validateNewRepos()} loadingContent={<Spinner />}>
-              {NewRepos.repos[page - 1]?.map((repo) => (
-                <TableRow key={repo?.id} href={repo?.url} as={Link} className="cursor-pointer">
-                  <TableCell>
-                    <FaGithub className="text-2xl text-neutral-950/70 dark:text-neutral-200/60" />
-                  </TableCell>
-                  <TableCell>
-                    <User
-                      avatarProps={{ radius: 'lg', src: USER_AVATAR }}
-                      description={truncate(repo?.fullName, 35)}
-                      name={truncate(repo?.name, 35)}
-                    >
-                      {USERNAME_PROFILE}
-                    </User>
-                  </TableCell>
-                  <TableCell>
-                    <Chip
-                      className="capitalize"
-                      color={SelectColorBylang(repo?.lang ?? defaultLanguaje)}
-                      size="sm"
-                      variant="flat"
-                    >
-                      {repo?.lang ?? defaultLanguaje}
-                    </Chip>
-                  </TableCell>
-                  <TableCell>
-                    <Chip
-                      className="capitalize"
-                      color={SelectColorByLicence(repo?.licence ?? '')}
-                      size="sm"
-                      variant="flat"
-                    >
-                      {repo?.licence ?? 'No licence'}
-                    </Chip>
-                  </TableCell>
-                  <TableCell>{NumberToMegaBytes(repo?.size)}</TableCell>
-                </TableRow>
-              ))}
+              {NewRepos.repos[page - 1]?.map((repo) => {
+                return (
+                  <TableRow key={repo?.id} href={repo?.url} as={Link} className={`cursor-pointer animate-fade-down`}>
+                    <TableCell>
+                      <FaGithub className="text-2xl text-neutral-950/70 dark:text-neutral-200/60" />
+                    </TableCell>
+                    <TableCell>
+                      <User
+                        avatarProps={{ radius: 'lg', src: USER_AVATAR }}
+                        description={truncate(repo?.fullName, 35)}
+                        name={truncate(repo?.name, 35)}
+                      >
+                        {USERNAME_PROFILE}
+                      </User>
+                    </TableCell>
+                    <TableCell>
+                      <Chip
+                        className="capitalize"
+                        color={SelectColorBylang(repo?.lang ?? defaultLanguaje)}
+                        size="sm"
+                        variant="flat"
+                      >
+                        {repo?.lang ?? defaultLanguaje}
+                      </Chip>
+                    </TableCell>
+                    <TableCell>
+                      <Chip
+                        className="capitalize"
+                        color={SelectColorByLicence(repo?.licence ?? '')}
+                        size="sm"
+                        variant="flat"
+                      >
+                        {repo?.licence ?? 'No licence'}
+                      </Chip>
+                    </TableCell>
+                    <TableCell>{NumberToMegaBytes(repo?.size)}</TableCell>
+                  </TableRow>
+                );
+              })}
             </TableBody>
           </Table>
           <div className="w-full flex justify-center items-center mt-6">

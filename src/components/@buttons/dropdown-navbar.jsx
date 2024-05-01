@@ -1,7 +1,7 @@
 import { Dropdown, NavbarItem, DropdownTrigger, Button, DropdownMenu, DropdownItem } from '@nextui-org/react';
 import { IoIosArrowDown } from 'react-icons/io';
 
-export function DropdownNavbar({ items, label }) {
+export function DropdownNavbar({ items, label, customClassName }) {
   items = items ?? [];
 
   return (
@@ -10,10 +10,11 @@ export function DropdownNavbar({ items, label }) {
         <DropdownTrigger>
           <Button
             disableRipple
-            className="p-0 bg-transparent data-[hover=true]:bg-transparent hover:text-blue-400"
             endContent={<IoIosArrowDown />}
             radius="sm"
             variant="light"
+            color="foreground"
+            className={customClassName ?? 'p-0 bg-transparent data-[hover=true]:bg-transparent hover:text-blue-400'}
           >
             {label}
           </Button>

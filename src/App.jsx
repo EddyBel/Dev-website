@@ -6,8 +6,11 @@ import { Routes } from './router/router';
 import { BlogProvider } from './store/blog.context';
 import { GithubProvider } from './store/github.context';
 import { DrawingInConsole } from './utils/drawing';
+// import { ApiNotification } from './components/@notifications/api.notification';
+// import { Toaster } from 'sonner';
 
 function App() {
+  //   ApiNotification();
   useEffect(() => DrawingInConsole(), []);
 
   return (
@@ -19,6 +22,8 @@ function App() {
         </GithubProvider>
       </BlogProvider>
       <ButtonUpScroll />
+      {/* <Toaster theme="dark" /> */}
+      {/* <SwitchTheme /> */}
       <Footer />
     </>
   );

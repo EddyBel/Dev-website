@@ -1,6 +1,7 @@
 import { Image, Button } from '@nextui-org/react';
 // import { ImageShadow } from '../@common/img-shadow';
 import { Link } from 'react-router-dom';
+import { ValidatorVariable } from '../@common/validators';
 
 /**
  * CardArticle Component
@@ -30,27 +31,35 @@ import { Link } from 'react-router-dom';
  *
  * @returns {JSX.Element} - Rendered CardArticle component.
  */
-export function CardArticle({ url, title, description, path, height, width, blurred, zoomed }) {
+export function CardArticle({ url, title, description, path, height, width, blurred, zoomed, matter, grade }) {
   return (
     <Link to={path}>
-      <div className="w-full max-w-[300px] min-h-[230px] sm:min-h-[290px] lg:min-h-[270px] p-3 rounded-lg hover:bg-neutral-200/70 dark:hover:bg-neutral-800/70 transition-background duration-300 animation-WatchScaleOpacity">
+      <div className="w-full max-w-[300px] min-h-[230px] sm:min-h-[290px] lg:min-h-[270px] p-3 rounded-2xl hover:bg-neutral-200/70 dark:hover:bg-neutral-900/70 transition-background duration-300 animation-WatchScaleOpacity overflow-hidden bg-neutral-800">
         <div className="w-full m-auto flex justify-center items-center">
           <Image
             isZoomed={zoomed}
             isBlurred={blurred ?? false}
             src={url}
-            width={width}
-            height={height}
+            width="100%"
             alt={''}
             loading="lazy"
-            className="rounded-md h-2/4 w-full"
+            radius="lg"
+            className="object-cover w-full"
           />
         </div>
         <div className="w-full flex flex-col gap-2 mt-3">
-          <h1 className="text-[0.8rem] sm:text-md capitalize font-bold text-blue-700/60 dark:text-neutral-200">
+          <h1 className="text-[0.8rem] source-code-pro text-balance sm:text-md capitalize font-bold text-blue-700/60 dark:text-neutral-200">
             {truncate(title ?? 'Articulo o proyecto', 45)}
           </h1>
-          <p className="text-[0.7rem] sm:text-[0.8rem] text-neutral-950/80 dark:text-neutral-200/60">
+
+          <ValidatorVariable variable={matter} elseComponent={<></>}>
+            <div className="flex justify-between gap-2 items-center source-code-pro text-balance text-[0.7rem]">
+              <p className="text-blue-300 bg-blue-900 py-1 px-2 rounded-xl">{matter}</p>
+              <p>{grade}</p>
+            </div>
+          </ValidatorVariable>
+
+          <p className="text-[0.7rem] source-code-pro text-pretty text-neutral-950/80 dark:text-neutral-200/60">
             {truncate(
               description ??
                 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deserunt obcaecati necessitatibus cum eaque beatae perferendis suscipit, accusamus inventore repellat',

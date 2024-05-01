@@ -5,6 +5,9 @@ import { validateValues } from '../../utils/validations';
 
 export function ApiNotification() {
   const { information } = useStore();
+  const IDs = [];
+
+  const clearIntervals = () => IDs.map((id) => clearInterval(id));
 
   // Crear una promesa que valide el estado information
   const promise = new Promise((resolve, reject) => {
@@ -12,23 +15,25 @@ export function ApiNotification() {
 
     const interval = setInterval(() => {
       time++;
+
       // Verificar si el estado information tiene algún valor
-      //   Recuelve la promesa con el valor establecido
+      // Resuelve la promesa con el valor establecido
       // Limpia el intervalo
       const validateInformation = validateValues(information);
       if (validateInformation) {
         resolve({ name: 'information', status: true });
-        clearInterval(interval);
+        clearIntervals();
       } else if (time >= ATTEMPTS_API) {
         // Si no tiene ningún valor después de 40 segundos, rechazar la promesa con el objeto deseado
         // Limpia el intervalo
         reject({ name: 'information', status: false });
-        clearInterval(interval);
+        clearIntervals();
       }
     }, 1000); // 1000 milisegundos = 1 segundo
+    IDs.push(interval);
   });
 
-  return toast.promise(promise, {
+  toast.promise(promise, {
     loading: 'Solicitando API...',
     success: () => `información cargada correctamente`,
     error: 'No se pudo conectar al back-end',

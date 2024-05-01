@@ -6,7 +6,7 @@ export const StoreContext = createContext();
 
 export function StoreProvider({ children }) {
   const [information, setInformation] = useState();
-  const [theme, setTheme] = useState(true);
+  const [theme, setTheme] = useState(false);
   const localRef = 'info';
 
   /** Realiza las peticiones a la API */
@@ -74,11 +74,11 @@ export function StoreProvider({ children }) {
   }
 
   /** Ejecución cada que cambia el estado del tema */
-  useEffect(() => {
-    const html = document.documentElement;
-    if (theme) html.classList.remove('dark');
-    else html.classList.add('dark');
-  }, [theme]);
+  //   useEffect(() => {
+  //     const html = document.documentElement;
+  //     if (theme) html.classList.remove('dark');
+  //     else html.classList.add('dark');
+  //   }, [theme]);
 
   /** Ejecución inicial al arrancar la web */
   useEffect(() => {
