@@ -1,6 +1,13 @@
-import { Image } from '@nextui-org/react';
+import { Button, Image } from '@nextui-org/react';
 // import { ImageShadow } from '../@common/img-shadow';
 import { Link } from 'react-router-dom';
+import { truncate } from '../../utils/formatter';
+import { IoBrowsers, IoLogoJavascript } from 'react-icons/io5';
+import { SiGithub, SiTailwindcss } from 'react-icons/si';
+import { GetTechIcon } from '../@common/get-tech-icon';
+import { FaHeart } from 'react-icons/fa';
+import { RiArchiveDrawerFill } from 'react-icons/ri';
+import { BsBrowserChrome } from 'react-icons/bs';
 
 /**
  * CardArticle Component
@@ -30,11 +37,26 @@ import { Link } from 'react-router-dom';
  *
  * @returns {JSX.Element} - Rendered CardArticle component.
  */
-export function CardProyect({ url, title, description, path, onClick, height, width, blurred, zoomed }) {
+export function CardProyect({
+  url,
+  title,
+  description,
+  path,
+  website,
+  repo,
+  stack,
+  onClick,
+  height,
+  width,
+  blurred,
+  zoomed,
+  like,
+  showButtonRepo = true,
+}) {
   return (
-    <Link to={path} onClick={onClick}>
+    <a href={path} onClick={onClick} target="_blank" rel="noopener noreferrer">
       <div className="w-full max-w-[300px] hover:bg-neutral-200/70 dark:hover:bg-neutral-800/80 p-5 rounded-lg duration-300 transition-background animation-card-proyects">
-        <div className="w-full m-auto flex justify-center items-center">
+        <div className="w-full m-auto flex justify-center items-center relative overflow-hidden rounded-xl">
           <Image
             isZoomed={zoomed}
             isBlurred={blurred ?? false}
@@ -45,17 +67,51 @@ export function CardProyect({ url, title, description, path, onClick, height, wi
             className="rounded-md"
             loading="lazy"
           />
+
+          <div className="absolute left-0 top-0 flex items-end justify-between w-full h-full z-10 px-4 py-2 bg-black/30">
+            <div className="flex items-center justify-center gap-3">
+              {stack?.map((s, index) => (
+                <GetTechIcon tech={s} key={`techicon-${index}`} />
+              ))}
+            </div>
+            <div className="flex items-center justify-center gap-3">
+              {website ? <BsBrowserChrome /> : repo ? <SiGithub /> : <></>}
+            </div>
+          </div>
         </div>
         <div className="w-full flex flex-col gap-2 mt-3">
           <h1 className="text-md capitalize text-neutral-950 font-bold dark:text-yellow-200 source-code-pro text-balance">
             {title ?? 'Articulo o proyecto'}
           </h1>
           <p className="text-[0.7rem] text-neutral-950/80 dark:text-neutral-200/60 source-code-pro text-pretty">
-            {description ??
-              'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deserunt obcaecati necessitatibus cum eaque beatae perferendis suscipit, accusamus inventore repellat'}
+            {truncate(
+              description ??
+                'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deserunt obcaecati necessitatibus cum eaque beatae perferendis suscipit, accusamus inventore repellat',
+              120,
+            )}
           </p>
+
+          <div className="w-full flex justify-between items-center mt-1">
+            {repo && showButtonRepo ? (
+              <Button
+                as={Link}
+                to={repo}
+                target="_blank"
+                rel="noopener noreferrer"
+                color="secondary"
+                size="sm"
+                variant="bordered"
+                startContent={<SiGithub />}
+              >
+                Github
+              </Button>
+            ) : (
+              <></>
+            )}
+            {like ? <FaHeart color="#ff81b5" /> : <></>}
+          </div>
         </div>
       </div>
-    </Link>
+    </a>
   );
 }
