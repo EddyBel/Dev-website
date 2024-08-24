@@ -7,11 +7,14 @@ import { FiGithub } from 'react-icons/fi';
 import { FaChrome } from 'react-icons/fa';
 import { HighlightSpecialWords } from './components/description-project';
 import { specialWordsInDescription } from './components/specia-words-description';
+import { ContentNotFound } from './notFound';
 
 export function PreviewCodePage() {
   const { id_project } = useParams();
 
   const project = INFORMATION_PROJECTS[id_project];
+  if (!project) return <ContentNotFound />;
+
   const nameProject = project.name;
   const descriptionProject = project.description;
   const stacksProject = project.stack;
