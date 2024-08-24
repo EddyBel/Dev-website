@@ -6,15 +6,13 @@ import { Routes } from './router/router';
 import { BlogProvider } from './store/blog.context';
 import { GithubProvider } from './store/github.context';
 import { DrawingInConsole } from './utils/drawing';
-// import { ApiNotification } from './components/@notifications/api.notification';
-// import { Toaster } from 'sonner';
 
 function App() {
   //   ApiNotification();
   useEffect(() => DrawingInConsole(), []);
 
   return (
-    <>
+    <div className="w-full h-full bg-neutral-950">
       <NavBar />
       <BlogProvider>
         <GithubProvider>
@@ -25,7 +23,7 @@ function App() {
       {/* <Toaster theme="dark" /> */}
       {/* <SwitchTheme /> */}
       <Footer />
-    </>
+    </div>
   );
 }
 
