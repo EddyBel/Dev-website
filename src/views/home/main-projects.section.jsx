@@ -17,7 +17,7 @@ export function MainProjectsSection() {
               stack={p.stack}
               title={p.name}
               description={p.description}
-              path={p.web || p.repo}
+              path={`/works/${index}`}
               website={p.web}
               repo={p.repo}
               showButtonRepo={false}

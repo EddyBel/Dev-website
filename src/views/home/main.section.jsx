@@ -14,7 +14,7 @@ export function MainSection({ banner }) {
   return (
     <ValidatorVariable variable={INFORMATION_MESSAGES} elseComponent={<BannerLoader />}>
       <section className="py-5 mt-5">
-        <RandomizedGreeting gretting={gretting} />
+        <RandomizedGreeting gretting={gretting} time={150} />
         <HighlightSpecialWords text={mainDescription} />
       </section>
       <BannerShadow background={urlBanner}>{/* <Avatar src={Logo} className="w-10 h-10" isBordered /> */}</BannerShadow>

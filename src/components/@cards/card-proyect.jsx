@@ -1,12 +1,9 @@
-import { Button, Image, Tooltip } from '@nextui-org/react';
-// import { ImageShadow } from '../@common/img-shadow';
+import { Button, Image } from '@nextui-org/react';
 import { Link } from 'react-router-dom';
 import { truncate } from '../../utils/formatter';
-import { IoBrowsers, IoLogoJavascript } from 'react-icons/io5';
-import { SiGithub, SiTailwindcss } from 'react-icons/si';
+import { SiGithub } from 'react-icons/si';
 import { GetTechIcon } from '../@common/get-tech-icon';
 import { FaHeart } from 'react-icons/fa';
-import { RiArchiveDrawerFill } from 'react-icons/ri';
 import { BsBrowserChrome } from 'react-icons/bs';
 
 /**
@@ -54,7 +51,7 @@ export function CardProyect({
   showButtonRepo = true,
 }) {
   return (
-    <a href={path} onClick={onClick} target="_blank" rel="noopener noreferrer">
+    <Link to={path} onClick={onClick}>
       <div className="w-full max-w-[300px] hover:bg-neutral-200/70 dark:hover:bg-neutral-800/80 p-5 rounded-lg duration-300 transition-background">
         <div className="w-full m-auto flex justify-center items-center relative overflow-hidden rounded-xl">
           <Image
@@ -112,6 +109,6 @@ export function CardProyect({
           </div>
         </div>
       </div>
-    </a>
+    </Link>
   );
 }

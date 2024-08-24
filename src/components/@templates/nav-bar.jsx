@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import {
   Navbar,
   NavbarBrand,
@@ -6,13 +7,11 @@ import {
   NavbarItem,
   NavbarMenuToggle,
   NavbarMenu,
-  Link,
   Button,
   NavbarMenuItem,
   Divider,
 } from '@nextui-org/react';
 import { AvatarCard } from '../@common/avatar-cards';
-import { DropdownNavbar } from '../@buttons/dropdown-navbar';
 import { FiBook } from 'react-icons/fi';
 import { FiBookOpen } from 'react-icons/fi';
 import { GrFavorite } from 'react-icons/gr';
@@ -62,7 +61,7 @@ export function NavBar() {
           <Button
             color="foreground"
             className="hover:bg-white hover:text-neutral-950 text-white py-1 px-2 rounded-3xl transition-colors duration-150 sulphur-point-bold"
-            href={'/home'}
+            to={'/home'}
             as={Link}
           >
             Inicio
@@ -103,7 +102,7 @@ export function NavBar() {
             color="foreground"
             className="hover:bg-white hover:text-neutral-950 text-white py-1 px-2 rounded-3xl transition-colors duration-150 sulphur-point-bold"
             as={Link}
-            href="/works"
+            to="/works"
           >
             Proyectos
           </Button>
