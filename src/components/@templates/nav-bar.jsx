@@ -127,12 +127,12 @@ export function NavBar() {
       <NavbarMenu className="pt-6">
         <NavbarMenuItem className="flex items-center gap-2 my-2">
           <FaHouse className="text-3xl text-success" />
-          <Link color="foreground" className="w-full" href="/home" size="lg">
+          <Link color="foreground" className="w-full" to="/home" size="lg">
             Inicio
           </Link>
         </NavbarMenuItem>
         <Divider />
-        <NavbarMenuItem className="flex items-center gap-2 my-2">
+        {/* <NavbarMenuItem className="flex items-center gap-2 my-2">
           <GrFavorite className="text-3xl text-danger" />
           <Link color="foreground" className="w-full" href="/home/blog" size="lg">
             Blog
@@ -155,11 +155,11 @@ export function NavBar() {
           <Link color="foreground" className="w-full" href="/home/blog/notes" size="lg">
             Notes
           </Link>
-        </NavbarMenuItem>
-        <Divider />
+        </NavbarMenuItem> */}
+        {/* <Divider /> */}
         <NavbarMenuItem className="flex items-center gap-2 my-2">
           <FaNetworkWired className="text-3xl text-primary" />
-          <Link color="foreground" className="w-full" href="/works" size="lg">
+          <Link color="foreground" className="w-full" to="/works" size="lg">
             Proyectos
           </Link>
         </NavbarMenuItem>

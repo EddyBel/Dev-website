@@ -28,13 +28,13 @@ export function PreviewCodePage() {
           <TitleProject gretting={nameProject} time={100} />
           <HighlightSpecialWords text={descriptionProject} especialWords={specialWordsInDescription} />
 
-          <div className="w-full flex items-center gap-2 my-5">
+          <div className="w-full flex items-center gap-2 my-5 animate-fade-up delay-100">
             {stacksProject?.map((t, index) => (
               <GetTechIcon tech={t} key={index} />
             ))}
           </div>
 
-          <div className="flex items-center gap-5 w-full">
+          <div className="flex items-center gap-5 w-full animate-fade">
             {website ? (
               <Button
                 as={Link}
