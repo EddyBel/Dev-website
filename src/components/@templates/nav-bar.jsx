@@ -12,10 +12,6 @@ import {
   Divider,
 } from '@nextui-org/react';
 import { AvatarCard } from '../@common/avatar-cards';
-import { FiBook } from 'react-icons/fi';
-import { FiBookOpen } from 'react-icons/fi';
-import { GrFavorite } from 'react-icons/gr';
-import { FaCodepen } from 'react-icons/fa6';
 import { FaHouse } from 'react-icons/fa6';
 import { FaNetworkWired } from 'react-icons/fa6';
 import { IoDocumentText } from 'react-icons/io5';
@@ -113,7 +109,7 @@ export function NavBar() {
           <Button
             as={Link}
             color="primary"
-            href={SOURCE_CV}
+            to={SOURCE_CV}
             variant="flat"
             className="text-md font-bold"
             startContent={<IoDocumentText className="text-xl" />}
