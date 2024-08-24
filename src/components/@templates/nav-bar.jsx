@@ -68,7 +68,7 @@ export function NavBar() {
             Inicio
           </Button>
         </NavbarItem>
-        <DropdownNavbar
+        {/* <DropdownNavbar
           label="Blog"
           customClassName="hover:bg-white hover:text-neutral-950 rounded-3xl transition-colors duration-150 sulphur-point-bold"
           items={[
@@ -97,7 +97,7 @@ export function NavBar() {
               route: '/home/blog/notes',
             },
           ]}
-        />
+        /> */}
         <NavbarItem>
           <Button
             color="foreground"
