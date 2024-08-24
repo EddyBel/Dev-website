@@ -46,12 +46,12 @@ export function AvatarCard({ img, name, description, userProfile, position, hash
               </div>
             </div>
             <div className="flex gap-1">
-              <Link to={github}>
+              <Link to={github} target="_blank" rel="noopener noreferrer">
                 <Button isIconOnly color="default" aria-label="Github" variant="ghost" size="sm">
                   <IoLogoGithub className="text-xl" />
                 </Button>
               </Link>
-              <Link to={linkedin}>
+              <Link to={linkedin} target="_blank" rel="noopener noreferrer">
                 <Button isIconOnly color="primary" aria-label="Linkedin" variant="ghost" size="sm">
                   <ImLinkedin2 className="text-xl" />
                 </Button>
