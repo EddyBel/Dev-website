@@ -32,7 +32,7 @@ export function ProjectPage() {
               url={p.preview}
               title={p.name}
               description={p.description}
-              path={`/works/${index}`}
+              path={`/works/${p.id}`}
               stack={p.stack}
               website={p.web}
               repo={p.repo}

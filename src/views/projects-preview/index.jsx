@@ -15,9 +15,10 @@ import { FaHeart } from 'react-icons/fa6';
 export function PreviewCodePage() {
   const { id_project } = useParams();
 
-  const project = INFORMATION_PROJECTS[id_project];
-  if (!project) return <ContentNotFound />;
+  let project = INFORMATION_PROJECTS.filter((p) => p.id == parseInt(id_project));
+  if (!project || project?.length == 0) return <ContentNotFound />;
 
+  project = project[0];
   const nameProject = project.name;
   const descriptionProject = project.description;
   const stacksProject = project.stack;

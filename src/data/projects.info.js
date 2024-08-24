@@ -1,5 +1,6 @@
 export const INFORMATION_PROJECTS = [
   {
+    id: 1,
     name: 'Asistente de Inteligencia artificial',
     web: null,
     repo: 'https://github.com/EddyBel/AssistAI',
@@ -12,6 +13,7 @@ export const INFORMATION_PROJECTS = [
   },
 
   {
+    id: 2,
     name: 'Configuración para Neovim',
     web: null,
     repo: 'https://github.com/EddyBel/Neovim.Config',
@@ -23,6 +25,7 @@ export const INFORMATION_PROJECTS = [
     description: `Este repositorio contiene mi configuración personalizada para Neovim, un editor de texto avanzado que puede convertirse en un potente entorno de desarrollo integrado (IDE). Con mi configuración, Neovim se convierte en un IDE prácticamente completo, compatible con múltiples lenguajes de programación y que ofrece una experiencia de usuario ágil y fluida gracias al uso del gestor de plugins Lazy. Encontrarás todo lo que necesitas para empezar a trabajar con Neovim de inmediato, desde la instalación de plugins hasta la personalización de los atajos de teclado y las opciones de visualización: ¡disfruta de la productividad que Neovim puede ofrecerte!.`,
   },
   {
+    id: 3,
     name: 'Configuración para Vim',
     web: null,
     repo: 'https://github.com/EddyBel/Vim.Config',
@@ -33,6 +36,7 @@ export const INFORMATION_PROJECTS = [
     description: `¡Vim.Config es una configuración de Vim como entorno de desarrollo integrado (IDE) diseñado para aumentar su productividad y eficiencia de programación! Este repositorio se centra en proporcionar una experiencia fluida y personalizable para los desarrolladores que prefieren utilizar Vim como su principal editor de texto.`,
   },
   {
+    id: 4,
     name: 'Esfera con Typescript',
     web: 'https://eddybel.github.io/Esfera-de-puntos/',
     repo: 'https://github.com/EddyBel/Esfera-de-puntos',
@@ -42,6 +46,7 @@ export const INFORMATION_PROJECTS = [
     description: `Este proyecto es una implementación de un diseño interactivo de una esfera 3D creada utilizando TypeScript y React. La esfera está compuesta por puntos que se distribuyen uniformemente en su superficie y pueden moverse y rotar en respuesta a interacciones del usuario. Este repositorio no es un tutorial, sino una demostración del proceso de construcción de este efecto visual.`,
   },
   {
+    id: 5,
     name: 'UI Homepage de App',
     web: null,
     repo: 'https://github.com/EddyBel/app-homepage',
@@ -51,6 +56,7 @@ export const INFORMATION_PROJECTS = [
     description: `Diseño de una homepage para una app web mobile utilizando typescript como lenguaje principal junto con la libreria ReactJS.`,
   },
   {
+    id: 6,
     name: 'Curriculum en Web',
     web: 'https://cv-eduardorangel.netlify.app/',
     repo: 'https://github.com/EddyBel/Curriculum',
@@ -61,6 +67,7 @@ export const INFORMATION_PROJECTS = [
     description: `Este proyecto es una página web que funciona como un CV imprimible. Utiliza un archivo JSON para cargar la información de manera dinámica y está inspirado en los trabajos de Bartosz Jarocki y Miguel Ángel Durán, conocido como Midudev.`,
   },
   {
+    id: 7,
     name: 'Widgets para Notion',
     web: 'https://eddybel.github.io/Widgets-for-Notion/',
     repo: 'https://github.com/EddyBel/Curriculum',
@@ -70,6 +77,7 @@ export const INFORMATION_PROJECTS = [
     description: `Este repositorio contiene una colección de widgets creados con HTML y CSS, diseñados específicamente para integrarse en las páginas de Notion. Estos widgets, que incluyen relojes de diversos estilos, calendarios y contadores de fechas festivas, sirven como elementos decorativos que enriquecen visualmente y funcionalmente tus páginas de Notion. Cada widget está cuidadosamente elaborado para proporcionar una experiencia estética y práctica, facilitando la personalización y mejorando la utilidad de tu espacio de trabajo en Notion.`,
   },
   {
+    id: 8,
     name: 'CodeChroma',
     web: null,
     repo: 'https://github.com/EddyBel/CodeChroma',
@@ -81,6 +89,7 @@ export const INFORMATION_PROJECTS = [
     description: `El proyecto «CodeChroma» es una biblioteca de Python para resaltar y colorear texto en el terminal. Con esta biblioteca, los usuarios pueden resaltar la sintaxis del código y colorear elementos específicos de markdown, como títulos, enlaces, paréntesis y texto entre comillas.`,
   },
   {
+    id: 9,
     name: 'Compresor de imagenes',
     web: null,
     repo: 'https://github.com/EddyBel/Compressor',
@@ -90,6 +99,7 @@ export const INFORMATION_PROJECTS = [
     description: `Para practicar el lenguaje python, escribir un compresor y conversor de imágenes. Pero tambien queria que tuviera un entorno grafico asi que al buscar opciones encontre el modulo Eel que me parecio la mejor opcion a las demas ya que para programas python muy pequeños y sencillos se puede conseguir una interfaz grafica mas bonita y sencilla de escribir por ser css html javascript.`,
   },
   {
+    id: 10,
     name: 'Ecommerce',
     web: null,
     repo: 'https://github.com/EddyBel/Ecommerce',
@@ -99,6 +109,7 @@ export const INFORMATION_PROJECTS = [
     description: `Nuestro proyecto es una plataforma de comercio electrónico que permite a los usuarios comprar y vender productos de forma rápida y segura. Nuestro sitio web tiene estilos personalizados hechos en Sass y está desarrollado con ReactJS y TypeScript usando el framework ViteJS. Además, contamos con un backend realizado con Flask y Python que se encarga de servir los datos de usuarios y productos al cliente, así como de realizar las autenticaciones. Trabajamos constantemente en mejoras y nuevas funcionalidades para ofrecer la mejor experiencia de compra a nuestros usuarios.`,
   },
   {
+    id: 11,
     name: 'Notebook',
     web: null,
     repo: 'https://github.com/EddyBel/Notebook',
@@ -108,6 +119,7 @@ export const INFORMATION_PROJECTS = [
     description: `El proyecto se trata de un sitio web donde pueda almacenar y mostrar notas de una manera fácil y sencilla. Los archivos de notas están en formato markdown y markdown-react.`,
   },
   {
+    id: 12,
     name: 'Plane wars game Pygame',
     web: null,
     repo: 'https://github.com/EddyBel/Plane-Wars-Game-Pygame',
