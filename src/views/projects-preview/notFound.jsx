@@ -7,7 +7,7 @@ export function ContentNotFound() {
   return (
     <main className="w-full max-w-[1000px] h-screen m-auto">
       <div className="w-full flex flex-col items-center justify-center gap-4 pt-7">
-        <div className='flex flex-col items-center justify-center'>
+        <div className='flex flex-col items-center justify-center text-center'>
           <TitleProject gretting={'Upps! No encontramos el proyecto que buscas'} time={50} />
           <HighlightSpecialWords text={'Continua viendo el resto de proyectos 😊'} />
         </div>
