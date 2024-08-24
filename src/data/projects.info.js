@@ -7,7 +7,6 @@ export const INFORMATION_PROJECTS = [
     videoPreview: 'https://github.com/EddyBel/website-assets/raw/main/proyectos/assistant-ai/preview-video.mp4',
     viewMain: true,
     favorite: true,
-    favorite: true,
     stack: ['javascript', 'electron', 'ia'],
     description: `Este proyecto consiste en la creación de un chatbot que utiliza el modelo de lenguaje OpenAI para generar respuestas a las entradas del usuario.`,
   },

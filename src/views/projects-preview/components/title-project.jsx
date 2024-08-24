@@ -38,7 +38,7 @@ export const TitleProject = ({ gretting, time = 200 }) => {
   }, [gretting]);
 
   return (
-    <h1 className="text-2xl mb-5 text-balance capitalize source-code-pro dark:text-neutral-100/80 flex items-center gap-3 animate-fade-up">
+    <h1 className="text-2xl mb-5 max-w-[500px] text-balance capitalize source-code-pro dark:text-neutral-100/80 flex items-center gap-3 animate-fade-up">
       {displayedText.join('')}
     </h1>
   );

@@ -8,6 +8,9 @@ import { FaChrome } from 'react-icons/fa';
 import { HighlightSpecialWords } from './components/description-project';
 import { specialWordsInDescription } from './components/specia-words-description';
 import { ContentNotFound } from './notFound';
+import { Video } from '../../components/@common/video';
+import { Browser } from '../../components/@common/browser';
+import { FaHeart } from 'react-icons/fa6';
 
 export function PreviewCodePage() {
   const { id_project } = useParams();
@@ -18,6 +21,7 @@ export function PreviewCodePage() {
   const nameProject = project.name;
   const descriptionProject = project.description;
   const stacksProject = project.stack;
+  const isFavorite = project.favorite;
   const image = project.preview;
   const website = project.web;
   const video = project?.videoPreview;
@@ -25,10 +29,13 @@ export function PreviewCodePage() {
   const previewWebsite = website || repo;
 
   return (
-    <main className="min-h-[100dvh] w-full max-w-[1200px] m-auto">
-      <div className="flex items-center justify-center flex-wrap gap-4 px-3 pt-7">
-        <section className="flex-1 max-w-[400px] py-7">
-          <TitleProject gretting={nameProject} time={100} />
+    <main className="min-h-[100dvh] w-full max-w-[1000px] m-auto">
+      <div className="flex flex-col flex-wrap gap-4 px-3 pt-7">
+        <section className="flex-1 py-7">
+          <div className="flex items-center justify-between">
+            <TitleProject gretting={nameProject} time={100} />
+            {isFavorite ? <FaHeart color="#ff81b5" /> : <></>}
+          </div>
           <HighlightSpecialWords text={descriptionProject} especialWords={specialWordsInDescription} />
 
           <div className="w-full flex items-center gap-2 my-5 animate-fade-up delay-100">
@@ -71,26 +78,26 @@ export function PreviewCodePage() {
           </div>
         </section>
         {website ? (
-          <iframe
-            className="flex-1 max-h-[500px] min-h-[500px] w-full rounded-xl"
-            src={previewWebsite}
-            frameborder="0"
-          ></iframe>
+          <Browser path={previewWebsite} />
         ) : video ? (
-          <video
-            className="flex-1 max-w-[700px] w-full rounded-xl"
-            style={{ aspectRatio: '16/9' }}
-            src={video}
-            autoPlay
-            loop
-            muted
-          ></video>
+          <Video src={video} poster={image} />
         ) : image ? (
-          <Image src={image} className="max-w-[600px] w-full object-cover" />
+          <Image src={image} className="w-full object-cover" alt={`preview-project-${nameProject}`} />
         ) : (
           <></>
         )}
       </div>
     </main>
   );
+}
+
+{
+  /* <video
+            className="flex-1 max-w-[700px] w-full rounded-xl"
+            style={{ aspectRatio: '16/9' }}
+            src={video}
+            autoPlay
+            loop
+            muted
+          ></video> */
 }
