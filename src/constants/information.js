@@ -50,4 +50,4 @@ export const URL_GITLAB = 'https://gitlab.com/EddyBel';
 export const URL_GMAIL = 'dante61918@gmail.com';
 export const URL_STORE = '';
 // RECURSOS
-export const SOURCE_CV = 'https://drive.google.com/file/d/1OhDm1vb6zwzIYtbkkdhrWf3u-KjiSNnp/view?usp=sharing';
+export const SOURCE_CV = 'https://drive.google.com/file/d/1UwgVRqa7gOVqg7kvXjXpCv-WTUtemt3l/view?usp=sharing';
